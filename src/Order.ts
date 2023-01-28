@@ -1,4 +1,7 @@
 export class Order {
+    addDiscountCoupon(discountCoupon: number) {
+        throw new Error("Method not implemented.");
+    }
     products : Array<Product>;
 
     constructor(produtcs: Array<Product>) {
