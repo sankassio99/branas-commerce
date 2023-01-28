@@ -1,7 +1,4 @@
 export class Order {
-    getTotal() {
-        throw new Error("Method not implemented.");
-    }
     products : Array<Product>;
 
     constructor(produtcs: Array<Product>) {
@@ -12,6 +9,16 @@ export class Order {
         return {
             products : this.products
         }
+    }
+
+    getTotal() : number {
+        let total : number = 0;
+
+        this.products.forEach(product => {
+            total += product.price * product.quantity;
+        });
+
+        return total;
     }
 
 }
