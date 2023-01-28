@@ -1,4 +1,7 @@
 export class Order {
+    getTotal() {
+        throw new Error("Method not implemented.");
+    }
     products : Array<Product>;
 
     constructor(produtcs: Array<Product>) {
