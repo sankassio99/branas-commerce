@@ -1,15 +1,17 @@
 export class Order {
+
+
     constructor(produtcs: Array<Product>) {
     }
-    
-    getOrder() {
+
+    getOrderDetails() {
         return {
             products : []
         }
     }
 
     createOrder(products: Product[]) {
-        throw new Error("Method not implemented.");
+        
     }
 
 }

@@ -9,12 +9,10 @@ test("Should create a order with 3 products", function () {
 
     let products = [product1, product2, product3];
 
+    // Act
     let order = new Order(products);
 
-    // Act
-    order.createOrder(products);
-
     // Assert
-    var res = order.getOrder();
+    var res = order.getOrderDetails();
     expect(res.products.length).toBe(3);
 });
