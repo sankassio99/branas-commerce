@@ -1,8 +1,6 @@
 export class Order {
-    addDiscountCoupon(discountCoupon: number) {
-        throw new Error("Method not implemented.");
-    }
     products : Array<Product>;
+    discountCoupon? : number ;
 
     constructor(produtcs: Array<Product>) {
         this.products = produtcs;
@@ -21,7 +19,16 @@ export class Order {
             total += product.price * product.quantity;
         });
 
+        if(this.discountCoupon){
+            var discountValue = total * (this.discountCoupon / 100)
+            total = total - discountValue;
+        }
+
         return total;
+    }
+
+    addDiscountCoupon(discountCoupon: number) {
+        this.discountCoupon = discountCoupon;
     }
 
 }
