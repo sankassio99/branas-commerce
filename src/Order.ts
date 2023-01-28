@@ -1,17 +1,14 @@
 export class Order {
-
+    products : Array<Product>;
 
     constructor(produtcs: Array<Product>) {
+        this.products = produtcs;
     }
 
     getOrderDetails() {
         return {
-            products : []
+            products : this.products
         }
-    }
-
-    createOrder(products: Product[]) {
-        
     }
 
 }
