@@ -1,4 +1,4 @@
-import {Order, Product} from "../src/Order";
+import {Order, Product} from "../src/order";
 
 test("Should create a order with 3 products", function () {
     // Ararnge
