@@ -1,31 +1,37 @@
 import express, { Request, Response } from 'express';
 import data from './data';
+import { Order, Product } from './order';
 import { validate } from './validator';
 const app = express();
 app.use(express.json());
 
 let myCart = [];
+let myOrder : Order;
 
 app.post('/checkout', function (req: Request, res: Response) {
   let output: Output = {};
-  output.total = 0;
   const isValid = validate(req.body.cpf);
+
   if (!isValid) {
     output.message = "Invalid cpf";
   } 
 
-  console.log(req.body?.items);
+  myOrder = new Order([]);
+  output.order = myOrder;
 
-  if(!req.body?.items) res.json(output);
+  if(req.body.items){
+    req.body.items.forEach((item: ProductReq) => {
+      let product = findProductById(item.id);
+      if(product){
+        product.quantity = item.quantity;
+        myOrder.products.push(product);
+      }
+    });
+  }
 
-  req.body.items.forEach((element: { id: string; quantity : number }) => {
-    let product = findProductById(element.id);
-    console.log(product.desc);
-    if(product){
-      myCart.push(product);
-      output.total! += product.value * element.quantity;
-    }
-  });
+  output.total = myOrder.getTotal();
+
+  console.log(output);
 
   res.json(output);
 });
@@ -33,10 +39,20 @@ app.post('/checkout', function (req: Request, res: Response) {
 type Output = {
   message?: string,
   total?: number,
+  order?: Order,
 }
 
-function findProductById(id : string) : any{
-  return data.jsonProducts.find((element) => element.id == id);
+type ProductReq = {
+  id: string;
+  quantity: number;
+};
+
+function findProductById(id : string) : Product | undefined {
+  var product = data.jsonProducts.find((element) => element.id == id);
+  if(product){
+    return new Product(product?.id, product?.desc, product?.value, 1);
+  }
+
 }
 
 app.listen(3000)

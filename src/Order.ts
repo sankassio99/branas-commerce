@@ -34,11 +34,13 @@ export class Order {
 }
 
 export class Product {
+    id : String;
     desc: String;
     price: number;
     quantity: number;
 
-    constructor(desc: String, price: number, quantity: number) {
+    constructor(id : String , desc: String, price: number, quantity: number) {
+        this.id = id;
         this.desc = desc;
         this.price = price;
         this.quantity = quantity;
