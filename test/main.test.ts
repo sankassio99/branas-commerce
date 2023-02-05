@@ -7,6 +7,14 @@ test('Dont should accept a order with invalid CPF', async () => {
     };
     const response = await axios.post("http://localhost:3000/checkout", input);
     const output = response.data;
-    console.log(output);
     expect(output.message).toBe("Invalid cpf");
+});
+
+test('Should create a order', async () => {
+    const input = {
+        cpf: "406.302.170-27"
+    };
+    const response = await axios.post("http://localhost:3000/checkout", input);
+    const output = response.data;
+    expect(output.message).toBeNull;
 });
