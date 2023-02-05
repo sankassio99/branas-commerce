@@ -39,8 +39,12 @@ export class Product {
     price: number;
     quantity: number;
 
-    constructor(id : String , desc: String, price: number, quantity: number) {
-        this.id = id;
+    constructor(desc: String, price: number, quantity: number, id? : String) {
+        if(id){
+            this.id = id;
+        }else{
+            this.id = "13";
+        }
         this.desc = desc;
         this.price = price;
         this.quantity = quantity;

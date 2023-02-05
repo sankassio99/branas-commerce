@@ -29,6 +29,11 @@ app.post('/checkout', function (req: Request, res: Response) {
     });
   }
 
+  if(req.body.discountCoupon){
+    var discountValue = getDicountValue(req.body.discountCoupon);
+    myOrder.addDiscountCoupon(discountValue!);
+  }
+
   output.total = myOrder.getTotal();
 
   console.log(output);
@@ -47,10 +52,15 @@ type ProductReq = {
   quantity: number;
 };
 
+function getDicountValue(coupon : string) : number | undefined {
+  if(coupon == "VALE20") return 20;
+}
+
+
 function findProductById(id : string) : Product | undefined {
   var product = data.jsonProducts.find((element) => element.id == id);
   if(product){
-    return new Product(product?.id, product?.desc, product?.value, 1);
+    return new Product(product?.desc, product?.value, 1, product?.id);
   }
 
 }
