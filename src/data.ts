@@ -1,4 +1,4 @@
-import { Product } from "./order";
+import Product from './entities/product';
 
 export default {
     jsonProducts: [
