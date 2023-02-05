@@ -21,10 +21,14 @@ app.post('/checkout', function (req: Request, res: Response) {
 
   if (req.body.items) {
     req.body.items.forEach((item: ProductReq) => {
-      let product = findProductById(item.id);
-      if (product) {
-        product.quantity = item.quantity;
-        myOrder.products.push(product);
+      if (item.quantity < 0) {
+        output.message = "Invalid quantity";
+      } else {
+        let product = findProductById(item.id);
+        if (product) {
+          product.quantity = item.quantity;
+          myOrder.products.push(product);
+        }
       }
     });
   }

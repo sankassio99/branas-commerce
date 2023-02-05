@@ -60,3 +60,15 @@ test('Should not apply a expired discount coupon', async () => {
     expect(output.total).toBe(30);
     expect(output.message).toBe("Discount coupon invalid");
 });
+
+test('Should not create a order with negative product quantity', async () => {
+    const input = {
+        cpf: "345.229.790-02",
+        items: [
+            { id: '1', quantity: -2 },
+        ],
+    };
+    const response = await axios.post("http://localhost:3000/checkout", input);
+    const output = response.data;
+    expect(output.message).toBe("Invalid quantity");
+});
