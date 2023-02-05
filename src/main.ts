@@ -58,11 +58,7 @@ function getDicountValue(coupon : string) : number | undefined {
 
 
 function findProductById(id : string) : Product | undefined {
-  var product = data.jsonProducts.find((element) => element.id == id);
-  if(product){
-    return new Product(product?.desc, product?.value, 1, product?.id);
-  }
-
+  return data.jsonProducts.find((element) => element.id == id);
 }
 
 app.listen(3000)
