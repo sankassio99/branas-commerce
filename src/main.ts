@@ -5,15 +5,17 @@ import { validate } from './validator';
 const app = express();
 app.use(express.json());
 
-let myCart = [];
 let myOrder: Order;
 
+let output: Output ;
+
 app.post('/checkout', function (req: Request, res: Response) {
-  let output: Output = {};
+  output = {};
+
   const isValid = validate(req.body.cpf);
 
   if (!isValid) {
-    output.message = "Invalid cpf";
+    output.message = `Invalid cpf`;
   }
 
   myOrder = new Order([]);
@@ -37,8 +39,6 @@ app.post('/checkout', function (req: Request, res: Response) {
     var discountValue = getDicountValue(req.body.discountCoupon);
     if (discountValue) {
       myOrder.addDiscountCoupon(discountValue!);
-    } else {
-      output.message = "Discount coupon invalid";
     }
   }
 
@@ -60,8 +60,14 @@ type ProductReq = {
   quantity: number;
 };
 
-function getDicountValue(coupon: string): number | undefined {
-  if (coupon == "VALE20") return 20;
+function getDicountValue(couponName: string): number | undefined {
+  let coupon = data.jsonCoupons.find((element) => element.desc == couponName);
+
+  if(coupon?.expired){
+      output.message = "Discount coupon invalid";
+      return;
+  }
+  return coupon?.value;
 }
 
 
