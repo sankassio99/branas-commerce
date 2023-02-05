@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 let myCart = [];
-let myOrder : Order;
+let myOrder: Order;
 
 app.post('/checkout', function (req: Request, res: Response) {
   let output: Output = {};
@@ -14,24 +14,28 @@ app.post('/checkout', function (req: Request, res: Response) {
 
   if (!isValid) {
     output.message = "Invalid cpf";
-  } 
+  }
 
   myOrder = new Order([]);
   output.order = myOrder;
 
-  if(req.body.items){
+  if (req.body.items) {
     req.body.items.forEach((item: ProductReq) => {
       let product = findProductById(item.id);
-      if(product){
+      if (product) {
         product.quantity = item.quantity;
         myOrder.products.push(product);
       }
     });
   }
 
-  if(req.body.discountCoupon){
+  if (req.body.discountCoupon) {
     var discountValue = getDicountValue(req.body.discountCoupon);
-    myOrder.addDiscountCoupon(discountValue!);
+    if (discountValue) {
+      myOrder.addDiscountCoupon(discountValue!);
+    } else {
+      output.message = "Discount coupon invalid";
+    }
   }
 
   output.total = myOrder.getTotal();
@@ -52,12 +56,12 @@ type ProductReq = {
   quantity: number;
 };
 
-function getDicountValue(coupon : string) : number | undefined {
-  if(coupon == "VALE20") return 20;
+function getDicountValue(coupon: string): number | undefined {
+  if (coupon == "VALE20") return 20;
 }
 
 
-function findProductById(id : string) : Product | undefined {
+function findProductById(id: string): Product | undefined {
   return data.jsonProducts.find((element) => element.id == id);
 }
 
