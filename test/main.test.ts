@@ -21,7 +21,7 @@ test('Should create a order', async () => {
 
 test('Should create a order with 3 products', async () => {
     const input = {
-        cpf: "406.302.170-27",
+        cpf: "345.229.790-02",
         items: [
             {id: '1', quantity: 1},
             {id: '2', quantity: 1},
