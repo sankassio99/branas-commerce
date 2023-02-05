@@ -8,6 +8,6 @@ app.post('/checkout', function (req : Request, res : Response) {
   const isValid = validate(req.body.cpf);
   if(!isValid) output.message = "Invalid cpf";
   res.json(output);
-})
+});
 
 app.listen(3000)
