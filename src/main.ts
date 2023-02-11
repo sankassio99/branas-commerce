@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import data from './data';
+import data from './data/data';
 import Order from './entities/order';
 import Product from './entities/product';
 import { validate } from './validator';
