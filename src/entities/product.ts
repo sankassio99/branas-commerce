@@ -7,14 +7,14 @@ export default class Product {
     quantity: number;
     width: number;
     height: number;
-    length: number;
+    deep: number;
     weight: number;
 
     constructor({desc, price,
         quantity, width, height,
-        length, weight, id}:{desc: String, price: number,
+        deep: length, weight, id}:{desc: String, price: number,
         quantity: number, width: number, height: number,
-        length: number, weight: number, id?: String}) {
+        deep: number, weight: number, id?: String}) {
         if (id) {
             this.id = id;
         } else {
@@ -25,7 +25,7 @@ export default class Product {
         this.quantity = quantity;
         this.width = width;
         this.height = height;
-        this.length = length;
+        this.deep = length;
         this.weight = weight;
     }
 }
