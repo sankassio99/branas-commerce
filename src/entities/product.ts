@@ -10,9 +10,11 @@ export default class Product {
     length: number;
     weight: number;
 
-    constructor(desc: String, price: number,
+    constructor({desc, price,
+        quantity, width, height,
+        length, weight, id}:{desc: String, price: number,
         quantity: number, width: number, height: number,
-        length: number, weight: number, id?: String) {
+        length: number, weight: number, id?: String}) {
         if (id) {
             this.id = id;
         } else {

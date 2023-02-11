@@ -2,9 +2,18 @@ import Product from '../entities/product';
 
 export default {
     jsonProducts: [
-        new Product("Notebook", 15, 1, 10, 10, 10, 10, "1"),
-        new Product("Playstation 4", 25, 1, 20, 20, 20, 20, "2"),
-        new Product("Tv LED 4k", 30, 1, 30, 30, 30, 30, "3"),
+        new Product({
+            desc: "Notebook", price: 15, height: 10, weight: 10,
+            length: 10, quantity: 1, width: 10, id: "1",
+        }),
+        new Product({
+            desc: "Playstation 4", price: 15, height: 10, weight: 10,
+            length: 10, quantity: 1, width: 10, id: "2",
+        }),
+        new Product({
+            desc: "Tv LED 4k", price: 15, height: 10, weight: 10,
+            length: 10, quantity: 1, width: 10, id: "3",
+        }),
     ],
     jsonCoupons: [
         { id: "1", expired: false, desc: "VALE20", value: 20 },
