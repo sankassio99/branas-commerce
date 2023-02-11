@@ -8,10 +8,10 @@ app.use(express.json());
 
 let myOrder: Order;
 
-let output: Output ;
+let output: Output;
 
 app.post('/checkout', function (req: Request, res: Response) {
-  output = {};
+  output = { freight: 0 };
 
   const isValid = validate(req.body.cpf);
 
@@ -31,6 +31,7 @@ app.post('/checkout', function (req: Request, res: Response) {
         if (product) {
           product.quantity = item.quantity;
           myOrder.products.push(product);
+          output.freight += calculeFreight(product);
         }
       }
     });
@@ -54,6 +55,7 @@ type Output = {
   message?: string,
   total?: number,
   order?: Order,
+  freight: number,
 }
 
 type ProductReq = {
@@ -64,9 +66,9 @@ type ProductReq = {
 function getDicountValue(couponName: string): number | undefined {
   let coupon = data.jsonCoupons.find((element) => element.desc == couponName);
 
-  if(coupon?.expired){
-      output.message = "Discount coupon invalid";
-      return;
+  if (coupon?.expired) {
+    output.message = "Discount coupon invalid";
+    return;
   }
   return coupon?.value;
 }
@@ -76,4 +78,24 @@ function findProductById(id: string): Product | undefined {
   return data.jsonProducts.find((element) => element.id == id);
 }
 
+function calculeFreight(item: Product): number {
+  // Valor do Frete = distância (km) * volume (m3) * (densidade/100)
+  const distance = 1000;
+  const volume = calculeVolume(item);
+  const density = calculeDesity(volume, item);
+  return distance * volume * density / 1000;
+}
+
 app.listen(3000)
+
+function calculeVolume(product: Product): number {
+  // Exemplos de volume ocupado (cubagem)
+  //   - Camera: H 20cm x D 15 cm x  W 10 cm = 30 m3
+  const volume = product.height * product.deep * product.width / 1000;
+  return volume;
+}
+function calculeDesity(volume: number, product : Product) {
+  // Camera: 1kg / 0,003 m3 = 333kg/m3
+  return product.weight / volume;
+}
+

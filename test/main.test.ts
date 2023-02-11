@@ -73,3 +73,19 @@ test('Should not create a order with negative product quantity', async () => {
     const output = response.data;
     expect(output.message).toBe("Invalid quantity");
 });
+test('Should create a order with 3 products and freight value included', async () => {
+    const input = {
+        cpf: "407.302.170-27",
+        items: [
+            { id: '1', quantity: 1 },
+            { id: '2', quantity: 1 },
+            { id: '3', quantity: 1 },
+        ],
+        from:"77060038",
+        to:"77060018",
+    };
+    const response = await axios.post("http://localhost:3000/checkout", input);
+    const output = response.data;
+    expect(output.freight).toBe(30);
+    expect(output.total).toBe(70);
+});

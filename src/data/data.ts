@@ -7,11 +7,11 @@ export default {
             deep: 10, quantity: 1, width: 10, id: "1",
         }),
         new Product({
-            desc: "Playstation 4", price: 15, height: 10, weight: 10,
+            desc: "Playstation 4", price: 25, height: 10, weight: 10,
             deep: 10, quantity: 1, width: 10, id: "2",
         }),
         new Product({
-            desc: "Tv LED 4k", price: 15, height: 10, weight: 10,
+            desc: "Tv LED 4k", price: 30, height: 10, weight: 10,
             deep: 10, quantity: 1, width: 10, id: "3",
         }),
     ],
