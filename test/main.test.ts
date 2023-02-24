@@ -89,3 +89,17 @@ test('Should create a order with 3 products and freight value included', async (
     expect(output.freight).toBe(30);
     expect(output.total).toBe(70);
 });
+test('Should return minimum freight value when its was smaller than minimum', async () => {
+    const input = {
+        cpf: "407.302.170-27",
+        items: [
+            { id: '3', quantity: 1 },
+        ],
+        from:"77060038",
+        to:"77060018",
+    };
+    const response = await axios.post("http://localhost:3000/checkout", input);
+    const output = response.data;
+    expect(output.freight).toBe(10);
+    expect(output.total).toBe(30);
+});

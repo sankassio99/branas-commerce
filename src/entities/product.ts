@@ -9,7 +9,7 @@ export default class Product {
     height: number;
     deep: number;
     weight: number;
-
+    
     constructor({desc, price,
         quantity, width, height,
         deep: length, weight, id}:{desc: String, price: number,

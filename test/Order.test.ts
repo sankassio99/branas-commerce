@@ -3,10 +3,9 @@ import Product from '../src/entities/product';
 
 test("Should create a order with 3 products", function () {
     // Ararnge
-    let product1 = new Product("",100.0,1,100,30,10,10);
-    let product2 = new Product("",250.0,1,20,10,20,10);
-    let product3 = new Product("",50.0,3,200,10,20,30);
-
+    let product1 = new Product({desc: "",price: 100.0, quantity:  1,width: 100, height: 30,deep:  10, weight: 10, id: "1"});
+    let product2 = new Product({desc: "",price: 100.0, quantity:  1,width: 100, height: 30,deep:  10, weight: 10, id: "2"});
+    let product3 = new Product({desc: "",price: 100.0, quantity:  1,width: 100, height: 30,deep:  10, weight: 10, id: "3"});
 
     let products = [product1, product2, product3];
 
@@ -20,9 +19,9 @@ test("Should create a order with 3 products", function () {
 
 test("Should calculate total value", function () {
     // Ararnge
-    let product1 = new Product("",100.0,1,100,30,10,10);
-    let product2 = new Product("",250.0,1,20,10,20,10);
-    let product3 = new Product("",50.0,3,200,10,20,30);
+    let product1 = new Product({desc: "",price: 100.0, quantity:  1,width: 100, height: 30,deep:  10, weight: 10, id: "1"});
+    let product2 = new Product({desc: "",price: 100.0, quantity:  1,width: 100, height: 30,deep:  10, weight: 10, id: "2"});
+    let product3 = new Product({desc: "",price: 100.0, quantity:  3,width: 100, height: 30,deep:  10, weight: 10, id: "3"});
     let products = [product1, product2, product3];
 
     // Act
@@ -36,9 +35,9 @@ test("Should calculate total value", function () {
 
 test("Should get total value with discount after associate coupon", function () {
     // Ararnge
-    let product1 = new Product("",100.0,1,100,30,10,10);
-    let product2 = new Product("",250.0,1,20,10,20,10);
-    let product3 = new Product("",50.0,3,200,10,20,30);
+    let product1 = new Product({desc: "",price: 100.0, quantity:  1,width: 100, height: 30,deep:  10, weight: 10, id: "1"});
+    let product2 = new Product({desc: "",price: 100.0, quantity:  1,width: 100, height: 30,deep:  10, weight: 10, id: "2"});
+    let product3 = new Product({desc: "",price: 100.0, quantity:  3,width: 100, height: 30,deep:  10, weight: 10, id: "3"});
     let products = [product1, product2, product3];
 
     let discountCoupon : number = 10; 
