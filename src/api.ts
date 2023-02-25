@@ -4,6 +4,7 @@ import data from './data/data';
 import Item from './entities/item';
 import Order from './entities/order';
 import Product from './entities/product';
+import CurrencyApiFake from './fakes/currencyApiFake';
 import { validate } from './validator';
 const app = express();
 app.use(express.json());
@@ -11,7 +12,7 @@ app.use(express.json());
 let myOrder: Order;
 
 let output: Output;
-let currencyApi: ICurrencyGateway;
+let currencyApi: ICurrencyGateway = new CurrencyApiFake();
 
 app.post('/checkout', function (req: Request, res: Response) {
   output = { freight: 0 };
