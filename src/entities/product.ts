@@ -9,13 +9,14 @@ export default class Product {
     height: number;
     deep: number;
     weight: number;
+    currency : string;
 
     constructor({ desc, price,
         quantity, width, height,
-        deep: length, weight, id }: {
+        deep: length, weight, currency, id }: {
             desc: String, price: number,
             quantity: number, width: number, height: number,
-            deep: number, weight: number, id?: String
+            deep: number, weight: number, currency? : string, id?: String
         }) {
         if (id) {
             this.id = id;
@@ -29,5 +30,6 @@ export default class Product {
         this.height = height;
         this.deep = length;
         this.weight = weight;
+        this.currency = currency ? currency : "BRL";
     }
 }

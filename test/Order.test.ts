@@ -73,8 +73,21 @@ test("Should not add item with quantity invalid", function () {
 
     // Act
     let order = new Order("746.971.314-01");
-    
 
     // Assert
     expect(() => order.addItem(product, -10)).toThrow(new Error("invalid quantity"));
+});
+
+test("Should add item with dolar currency and convert total to real currency", function () {
+    // Ararnge
+    const dolarCurrency = 3;
+    let product = new Product({ desc: "", price: 100.0, quantity: 1, width: 100, height: 30, deep: 10, weight: 10, currency : "USD" , id: "1" });
+
+    // Act
+    let order = new Order("746.971.314-01");
+    order.addItem(product, 1);
+
+    // Assert
+    const expectValue = product.price * dolarCurrency;
+    expect(order.getTotal()).toBe(expectValue);
 });
