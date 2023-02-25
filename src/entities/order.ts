@@ -1,24 +1,34 @@
+import Item from "./item";
 import Product from "./product";
 
 export default class Order {
-    products: Array<Product>;
+    items: Array<Item> = [];
     discountCoupon?: number;
 
-    constructor(produtcs: Array<Product>) {
-        this.products = produtcs;
+    constructor(readonly cpf : String, readonly uuid? : String) {
     }
 
     getOrderDetails() {
         return {
-            products: this.products
+            products: this.items
         }
+    }
+
+    addItems(products: Product[]) {
+        products.forEach(product => {
+            this.items.push(new Item(product.id, product.price, product.quantity));
+        });
+    }
+
+    addItem(product: Product, quantity : number) {
+        this.items.push(new Item(product.id, product.price, quantity));
     }
 
     getTotal(): number {
         let total: number = 0;
 
-        this.products.forEach(product => {
-            total += product.price * product.quantity;
+        this.items.forEach(product => {
+            total += product.unitPrice * product.quantity;
         });
 
         if (this.discountCoupon) {

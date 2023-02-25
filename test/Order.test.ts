@@ -1,5 +1,12 @@
 import Order from '../src/entities/order';
 import Product from '../src/entities/product';
+import crypto from "crypto";
+
+test('should create a empty order', () => {
+    const uuid = crypto.randomUUID();
+    const order = new Order("746.971.314-01", uuid);
+    expect(order.getTotal()).toBe(0);
+});
 
 test("Should create a order with 3 products", function () {
     // Ararnge
@@ -10,7 +17,8 @@ test("Should create a order with 3 products", function () {
     let products = [product1, product2, product3];
 
     // Act
-    let order = new Order(products);
+    let order = new Order("746.971.314-01");
+    order.addItems(products);
 
     // Assert
     var res = order.getOrderDetails();
@@ -25,7 +33,8 @@ test("Should calculate total value", function () {
     let products = [product1, product2, product3];
 
     // Act
-    let order = new Order(products);
+    let order = new Order("746.971.314-01");
+    order.addItems(products);
 
     // Assert
     let expectTotalValue = 500;
@@ -43,11 +52,17 @@ test("Should get total value with discount after associate coupon", function () 
     let discountCoupon: number = 10;
 
     // Act
-    let order = new Order(products);
+    let order = new Order("746.971.314-01");
+    order.addItems(products);
     order.addDiscountCoupon(discountCoupon);
 
     // Assert
     let expectTotalValue = 450;
     let totalValue = order.getTotal();
     expect(totalValue).toBe(expectTotalValue);
+});
+
+test('should not create a Order with invalid CPF', () => {
+    const uuid = crypto.randomUUID();
+    expect(() => new Order("666.666.666-11", uuid)).toThrow(new Error("invalid cpf");
 });

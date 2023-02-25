@@ -30,7 +30,7 @@ app.post('/checkout', function (req: Request, res: Response) {
         let product = findProductById(item.id);
         if (product) {
           product.quantity = item.quantity;
-          myOrder.products.push(product);
+          myOrder.items.push(product);
           output.freight += calculeFreight(product);
         }
       }

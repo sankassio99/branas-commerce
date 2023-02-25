@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "cccat10_2",
+			"path": "../../cccat10_2"
+		},
+		{
+			"name": "branas-commerce",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"jest.disabledWorkspaceFolders": [
+			"branas-course"
+		]
+	}
+}
