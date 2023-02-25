@@ -1,11 +1,13 @@
 import Item from "./item";
 import Product from "./product";
+import { validate }  from "../validator"
 
 export default class Order {
     items: Array<Item> = [];
     discountCoupon?: number;
 
-    constructor(readonly cpf : String, readonly uuid? : String) {
+    constructor(readonly cpf : string, readonly uuid? : string) {
+        if(!validate(cpf)) throw new Error("invalid cpf");
     }
 
     getOrderDetails() {

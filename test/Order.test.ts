@@ -64,5 +64,5 @@ test("Should get total value with discount after associate coupon", function () 
 
 test('should not create a Order with invalid CPF', () => {
     const uuid = crypto.randomUUID();
-    expect(() => new Order("666.666.666-11", uuid)).toThrow(new Error("invalid cpf");
+    expect(() => new Order("666.666.666-11", uuid)).toThrow(new Error("invalid cpf"));
 });
