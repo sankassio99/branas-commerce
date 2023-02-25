@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
+import ICurrencyGateway from './contracts/iCurrencyGateway';
 import data from './data/data';
+import Item from './entities/item';
 import Order from './entities/order';
 import Product from './entities/product';
 import { validate } from './validator';
@@ -9,6 +11,7 @@ app.use(express.json());
 let myOrder: Order;
 
 let output: Output;
+let currencyApi: ICurrencyGateway;
 
 app.post('/checkout', function (req: Request, res: Response) {
   output = { freight: 0 };
@@ -19,7 +22,7 @@ app.post('/checkout', function (req: Request, res: Response) {
     output.message = `Invalid cpf`;
   }
 
-  myOrder = new Order([]);
+  myOrder = new Order("746.971.314-01", currencyApi);
   output.order = myOrder;
 
   if (req.body.items) {
@@ -30,7 +33,7 @@ app.post('/checkout', function (req: Request, res: Response) {
         let product = findProductById(item.id);
         if (product) {
           product.quantity = item.quantity;
-          myOrder.items.push(product);
+          myOrder.items.push(new Item(product.id, product.price, item.quantity, product.currency));
           output.freight += calculeFreight(product);
         }
       }
@@ -94,7 +97,7 @@ function calculeVolume(product: Product): number {
   const volume = product.height * product.deep * product.width / 1000;
   return volume;
 }
-function calculeDesity(volume: number, product : Product) {
+function calculeDesity(volume: number, product: Product) {
   // Camera: 1kg / 0,003 m3 = 333kg/m3
   return product.weight / volume;
 }

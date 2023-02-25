@@ -13,7 +13,7 @@ export default class Order {
         this.cpf = new Cpf(cpf);
         this.currencyApi = currencyApi;
     }
-
+ 
     getOrderDetails() {
         return {
             products: this.items
