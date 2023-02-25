@@ -66,3 +66,15 @@ test('should not create a Order with invalid CPF', () => {
     const uuid = crypto.randomUUID();
     expect(() => new Order("666.666.666-11", uuid)).toThrow(new Error("invalid cpf"));
 });
+
+test("Should not add item with quantity invalid", function () {
+    // Ararnge
+    let product = new Product({ desc: "", price: 100.0, quantity: -1, width: 100, height: 30, deep: 10, weight: 10, id: "1" });
+
+    // Act
+    let order = new Order("746.971.314-01");
+    
+
+    // Assert
+    expect(() => order.addItem(product, -10)).toThrow(new Error("invalid quantity"));
+});

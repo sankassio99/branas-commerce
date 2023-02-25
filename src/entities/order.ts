@@ -1,13 +1,14 @@
 import Item from "./item";
 import Product from "./product";
-import { validate }  from "../validator"
+import Cpf from "./cpf";
 
 export default class Order {
     items: Array<Item> = [];
     discountCoupon?: number;
+    cpf : Cpf;
 
-    constructor(readonly cpf : string, readonly uuid? : string) {
-        if(!validate(cpf)) throw new Error("invalid cpf");
+    constructor(cpf : string, readonly uuid? : string) {
+        this.cpf = new Cpf(cpf);
     }
 
     getOrderDetails() {
@@ -23,6 +24,7 @@ export default class Order {
     }
 
     addItem(product: Product, quantity : number) {
+        if(quantity < 1) throw new Error("invalid quantity");
         this.items.push(new Item(product.id, product.price, quantity));
     }
 
