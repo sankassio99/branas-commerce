@@ -9,12 +9,14 @@ export default class Product {
     height: number;
     deep: number;
     weight: number;
-    
-    constructor({desc, price,
+
+    constructor({ desc, price,
         quantity, width, height,
-        deep: length, weight, id}:{desc: String, price: number,
-        quantity: number, width: number, height: number,
-        deep: number, weight: number, id?: String}) {
+        deep: length, weight, id }: {
+            desc: String, price: number,
+            quantity: number, width: number, height: number,
+            deep: number, weight: number, id?: String
+        }) {
         if (id) {
             this.id = id;
         } else {

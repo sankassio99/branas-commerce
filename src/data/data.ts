@@ -1,4 +1,10 @@
+import Order from '../entities/order';
 import Product from '../entities/product';
+
+var product = new Product({
+    desc: "Notebook", price: 15, height: 10, weight: 10,
+    deep: 10, quantity: 1, width: 10, id: "1",
+})
 
 export default {
     jsonProducts: [
@@ -15,6 +21,7 @@ export default {
             deep: 10, quantity: 1, width: 0.1, id: "3",
         }),
     ],
+    jsonOrders: [new Order([product])],
     jsonCoupons: [
         { id: "1", expired: false, desc: "VALE20", value: 20 },
         { id: "2", expired: true, desc: "VALE10", value: 10 },
