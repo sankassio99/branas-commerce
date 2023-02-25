@@ -1,5 +1,6 @@
 import Order from "../src/entities/order";
 import Product from "../src/entities/product";
+import CurrencyApiFake from "../src/fakes/currencyApiFake";
 
 
 test.skip('should save order in database persistence', async () => {
@@ -10,7 +11,7 @@ test.skip('should save order in database persistence', async () => {
     let products = [product1, product2, product3];
 
     // Act
-    let order = new Order("444.555.666-77");
+    let order = new Order("444.555.666-77",new CurrencyApiFake());
     order.addItems(products);
 
     //Arrange

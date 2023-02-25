@@ -2,17 +2,16 @@ import Item from "./item";
 import Product from "./product";
 import Cpf from "./cpf";
 import ICurrencyGateway from "../contracts/iCurrencyGateway";
-import CurrencyApiFake  from "../fakes/currencyApiFake";
 
 export default class Order {
     items: Array<Item> = [];
     discountCoupon?: number;
     cpf : Cpf;
-    currecyApi : ICurrencyGateway;
+    currencyApi : ICurrencyGateway;
 
-    constructor(cpf : string, readonly uuid? : string) {
+    constructor(cpf : string, currencyApi : ICurrencyGateway, readonly uuid? : string) {
         this.cpf = new Cpf(cpf);
-        this.currecyApi = new CurrencyApiFake();
+        this.currencyApi = currencyApi;
     }
 
     getOrderDetails() {
@@ -36,7 +35,7 @@ export default class Order {
         let total: number = 0;
 
         this.items.forEach(product => {
-            total += product.unitPrice * product.quantity * this.currecyApi.getCurreny(product.currency);
+            total += product.unitPrice * product.quantity * this.currencyApi.getCurreny(product.currency);
         });
 
         if (this.discountCoupon) {

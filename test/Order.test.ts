@@ -1,10 +1,18 @@
 import Order from '../src/entities/order';
 import Product from '../src/entities/product';
 import crypto from "crypto";
+import CurrencyApiFake  from "../src/fakes/currencyApiFake";
+import ICurrencyGateway  from "../src/contracts/iCurrencyGateway";
+
+let currencyApi : ICurrencyGateway;
+
+beforeEach(function () {
+	currencyApi = new CurrencyApiFake();
+});
 
 test('should create a empty order', () => {
     const uuid = crypto.randomUUID();
-    const order = new Order("746.971.314-01", uuid);
+    const order = new Order("746.971.314-01", currencyApi , uuid);
     expect(order.getTotal()).toBe(0);
 });
 
@@ -17,7 +25,7 @@ test("Should create a order with 3 products", function () {
     let products = [product1, product2, product3];
 
     // Act
-    let order = new Order("746.971.314-01");
+    let order = new Order("746.971.314-01",currencyApi);
     order.addItems(products);
 
     // Assert
@@ -33,7 +41,7 @@ test("Should calculate total value", function () {
     let products = [product1, product2, product3];
 
     // Act
-    let order = new Order("746.971.314-01");
+    let order = new Order("746.971.314-01",currencyApi);
     order.addItems(products);
 
     // Assert
@@ -52,7 +60,7 @@ test("Should get total value with discount after associate coupon", function () 
     let discountCoupon: number = 10;
 
     // Act
-    let order = new Order("746.971.314-01");
+    let order = new Order("746.971.314-01",currencyApi);
     order.addItems(products);
     order.addDiscountCoupon(discountCoupon);
 
@@ -64,7 +72,7 @@ test("Should get total value with discount after associate coupon", function () 
 
 test('should not create a Order with invalid CPF', () => {
     const uuid = crypto.randomUUID();
-    expect(() => new Order("666.666.666-11", uuid)).toThrow(new Error("invalid cpf"));
+    expect(() => new Order("666.666.666-11",currencyApi, uuid)).toThrow(new Error("invalid cpf"));
 });
 
 test("Should not add item with quantity invalid", function () {
@@ -72,7 +80,7 @@ test("Should not add item with quantity invalid", function () {
     let product = new Product({ desc: "", price: 100.0, quantity: -1, width: 100, height: 30, deep: 10, weight: 10, id: "1" });
 
     // Act
-    let order = new Order("746.971.314-01");
+    let order = new Order("746.971.314-01",currencyApi);
 
     // Assert
     expect(() => order.addItem(product, -10)).toThrow(new Error("invalid quantity"));
@@ -84,7 +92,7 @@ test("Should add item with dolar currency and convert total to real currency", f
     let product = new Product({ desc: "", price: 100.0, quantity: 1, width: 100, height: 30, deep: 10, weight: 10, currency : "USD" , id: "1" });
 
     // Act
-    let order = new Order("746.971.314-01");
+    let order = new Order("746.971.314-01",currencyApi);
     order.addItem(product, 1);
 
     // Assert
