@@ -1,10 +1,10 @@
 import express, { Request, Response } from 'express';
 import ICurrencyGateway from './application/gateway/iCurrencyGateway';
-import data from './data/data';
-import Item from './entities/item';
-import Order from './entities/order';
-import Product from './entities/product';
-import CurrencyApiFake from './fakes/currencyApiFake';
+import data from './infra/data/data';
+import Item from './domain/entities/item';
+import Order from './domain/entities/order';
+import Product from './domain/entities/product';
+import CurrencyApiFake from '../test/fakes/currencyApiFake';
 import { validate } from './validator';
 const app = express();
 app.use(express.json());

@@ -1,6 +1,6 @@
-import Order from "../src/entities/order";
-import Product from "../src/entities/product";
-import CurrencyApiFake from "../src/fakes/currencyApiFake";
+import Order from "../src/domain/entities/order";
+import Product from "../src/domain/entities/product";
+import CurrencyApiFake from "./fakes/currencyApiFake";
 
 
 test.skip('should save order in database persistence', async () => {

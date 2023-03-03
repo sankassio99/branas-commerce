@@ -1,6 +1,6 @@
-import Order from '../entities/order';
-import Product from '../entities/product';
-import CurrencyApiFake from '../fakes/currencyApiFake';
+import Order from '../../domain/entities/order';
+import Product from '../../domain/entities/product';
+import CurrencyApiFake from '../../../test/fakes/currencyApiFake';
 
 var product = new Product({
     desc: "Notebook", price: 15, height: 10, weight: 10,

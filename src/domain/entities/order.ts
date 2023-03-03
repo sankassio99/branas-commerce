@@ -1,7 +1,7 @@
 import Item from "./item";
 import Product from "./product";
 import Cpf from "./cpf";
-import ICurrencyGateway from "../application/gateway/iCurrencyGateway";
+import ICurrencyGateway from "../../application/gateway/iCurrencyGateway";
 
 export default class Order {
     items: Array<Item> = [];

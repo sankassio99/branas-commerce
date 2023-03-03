@@ -1,4 +1,4 @@
-import ICurrencyGateway from "../application/gateway/iCurrencyGateway";
+import ICurrencyGateway from "../../src/application/gateway/iCurrencyGateway";
 
 export default class CurrencyApiFake implements ICurrencyGateway {
     constructor() {

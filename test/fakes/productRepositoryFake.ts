@@ -1,6 +1,6 @@
-import IProductRepository from '../application/gateway/iProductRepository';
-import data from '../data/data';
-import Product from '../entities/product';
+import IProductRepository from '../../src/application/gateway/iProductRepository';
+import data from '../../src/infra/data/data';
+import Product from '../../src/domain/entities/product';
 
 class ProductRepositoryFake implements IProductRepository {
     constructor() {
