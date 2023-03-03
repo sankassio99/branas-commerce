@@ -102,4 +102,3 @@ function calculeDesity(volume: number, product: Product) {
   // Camera: 1kg / 0,003 m3 = 333kg/m3
   return product.weight / volume;
 }
-

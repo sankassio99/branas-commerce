@@ -1,6 +1,6 @@
 import CouponRepository from "./contracts/iCouponRepository";
 import CurrencyGateway from "./contracts/iCurrencyGateway";
-import FreightCalculator from "./FreightCalculator";
+import FreightCalculator from "./service/FreightCalculator";
 import ProductRepository from "./contracts/iProductRepository";
 import { validate } from "./validator";
 

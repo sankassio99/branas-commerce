@@ -1,5 +1,6 @@
 import Order from '../entities/order';
 import Product from '../entities/product';
+import CurrencyApiFake from '../fakes/currencyApiFake';
 
 var product = new Product({
     desc: "Notebook", price: 15, height: 10, weight: 10,
@@ -21,7 +22,7 @@ export default {
             deep: 10, quantity: 1, width: 0.1, id: "3",
         }),
     ],
-    jsonOrders: [new Order([product])],
+    jsonOrders: [new Order("407.302.170-27",new CurrencyApiFake())],
     jsonCoupons: [
         { id: "1", expired: false, desc: "VALE20", value: 20 },
         { id: "2", expired: true, desc: "VALE10", value: 10 },
