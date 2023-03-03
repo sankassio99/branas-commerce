@@ -1,8 +1,8 @@
-import CouponRepository from "./contracts/iCouponRepository";
-import CurrencyGateway from "./contracts/iCurrencyGateway";
-import FreightCalculator from "./service/FreightCalculator";
-import ProductRepository from "./contracts/iProductRepository";
-import { validate } from "./validator";
+import CouponRepository from "../repository/iCouponRepository";
+import CurrencyGateway from "../gateway/iCurrencyGateway";
+import FreightCalculator from "./FreightCalculator";
+import ProductRepository from "../gateway/iProductRepository";
+import { validate } from "../../validator";
 
 export default class Checkout {
 

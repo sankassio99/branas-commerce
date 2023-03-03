@@ -2,7 +2,7 @@ import Order from '../src/entities/order';
 import Product from '../src/entities/product';
 import crypto from "crypto";
 import CurrencyApiFake  from "../src/fakes/currencyApiFake";
-import ICurrencyGateway  from "../src/contracts/iCurrencyGateway";
+import ICurrencyGateway  from "../src/application/gateway/iCurrencyGateway";
 
 let currencyApi : ICurrencyGateway;
 

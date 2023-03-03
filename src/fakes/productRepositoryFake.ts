@@ -1,4 +1,4 @@
-import IProductRepository from '../contracts/iProductRepository';
+import IProductRepository from '../application/gateway/iProductRepository';
 import data from '../data/data';
 import Product from '../entities/product';
 

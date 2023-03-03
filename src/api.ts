@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import ICurrencyGateway from './contracts/iCurrencyGateway';
+import ICurrencyGateway from './application/gateway/iCurrencyGateway';
 import data from './data/data';
 import Item from './entities/item';
 import Order from './entities/order';

@@ -1,4 +1,4 @@
-import IOrderRepository from '../contracts/iOrderRepository';
+import IOrderRepository from '../application/repository/iOrderRepository';
 import data from '../data/data';
 import Order from '../entities/order';
 
