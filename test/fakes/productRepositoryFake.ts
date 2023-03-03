@@ -10,7 +10,7 @@ class ProductRepositoryFake implements IProductRepository {
         data.jsonProducts.push(product);
     }
 
-    async getProduct(idProduct: String): Promise<any> {
-        return data.jsonProducts.find((element) => element.id == idProduct);
+    async getProduct(idProduct: number): Promise<any> {
+        return data.jsonProducts.find((element) => parseInt(element.id) == idProduct);
     }
 }

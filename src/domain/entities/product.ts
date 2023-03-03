@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export default class Product {
-    id: String;
+    id: string;
     desc: String;
     price: number;
     quantity: number;
@@ -16,7 +16,7 @@ export default class Product {
         deep: length, weight, currency, id }: {
             desc: String, price: number,
             quantity: number, width: number, height: number,
-            deep: number, weight: number, currency? : string, id?: String
+            deep: number, weight: number, currency? : string, id?: string
         }) {
         if (id) {
             this.id = id;
