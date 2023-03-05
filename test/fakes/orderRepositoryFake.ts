@@ -2,7 +2,7 @@ import IOrderRepository from '../../src/application/repository/iOrderRepository'
 import data from '../../src/infra/data/data';
 import Order from '../../src/domain/entities/order';
 
-class OrderRepositoryFake implements IOrderRepository {
+export default class OrderRepositoryFake implements IOrderRepository {
     constructor() {
     }
 

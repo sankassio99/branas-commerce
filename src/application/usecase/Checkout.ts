@@ -1,57 +1,48 @@
-import CouponRepository from "../repository/iCouponRepository";
-import CurrencyGateway from "../gateway/iCurrencyGateway";
+import ICouponRepository from "../repository/iCouponRepository";
+import ICurrencyGateway from "../gateway/iCurrencyGateway";
 import FreightCalculator from "./FreightCalculator";
-import ProductRepository from "../gateway/iProductRepository";
-import { validate } from "../../validator";
+import IProductRepository from "../repository/iProductRepository";
+import IOrderRepository from "../repository/iOrderRepository";
+import Order from "../../domain/entities/order";
 
 export default class Checkout {
 
 	constructor (
-		readonly currencyGateway: CurrencyGateway,
-		readonly productRepository: ProductRepository,
-		readonly couponRepository: CouponRepository
+		readonly currencyGateway: ICurrencyGateway,
+		readonly productRepository: IProductRepository,
+		readonly couponRepository: ICouponRepository,
+		readonly orderRepository: IOrderRepository
 	) {
 	}
 
 	async execute (input: Input): Promise<Output> {
-		const isValid = validate(input.cpf);
-		if (!isValid) throw new Error("Invalid cpf");
-		const output: Output = {
-			total: 0,
-			freight: 0
-		};
-		const currencies = await this.currencyGateway.getCurrencies();
-		const items: number[] = [];
+		// const currencies = await this.currencyGateway.getCurrencies();
+		// const currencyTable = new CurrencyTable();
+		// currencyTable.addCurrency("USD", currencies.usd);
+		// const sequence = await this.orderRepository.count();
+		const order = new Order(input.cpf, this.currencyGateway);
+		let freight = 0;
 		if (input.items) {
 			for (const item of input.items) {
-				if (item.quantity <= 0) throw new Error("Invalid quantity");
-				if (items.includes(item.idProduct)) throw new Error("Duplicated item");
-				const productData = await this.productRepository.getProduct(item.idProduct);
-				if (productData.width <= 0 || productData.height <= 0 || productData.length <= 0 || parseFloat(productData.weight) <= 0) throw new Error("Invalid dimension");
-				if (productData.currency === "USD") {
-					output.total += parseFloat(productData.price) * item.quantity * currencies.usd;
-				} else {
-					output.total += parseFloat(productData.price) * item.quantity;
-				}
-				// const volume = productData.width/100 * productData.height/100 * productData.length/100;
-				// const density = parseFloat(productData.weight)/volume;
-				// const itemFreight = 1000 * volume * (density/100);
-				const itemFreight = FreightCalculator.calculate(productData);
-				output.freight += Math.max(itemFreight, 10) * item.quantity;
-				items.push(item.idProduct);
+				const product = await this.productRepository.getProduct(item.idProduct);
+				order.addItem(product, item.quantity);
+				const itemFreight = FreightCalculator.calculate(product);
+				freight += itemFreight;
 			}
 		}
+		// if (input.from && input.to) {
+		// 	order.freight = freight;
+		// }
 		if (input.coupon) {
-			const couponData = await this.couponRepository.get(input.coupon);
-			if (couponData.expire_date.getTime() >= new Date().getTime()) {
-				const percentage = parseFloat(couponData.percentage);
-				output.total -= (output.total * percentage)/100;
-			}
+			const coupon = await this.couponRepository.get(input.coupon);
+			order.addDiscountCoupon(coupon);
 		}
-		if (input.from && input.to) {
-			output.total += output.freight;
-		}
-		return output;
+		let total = order.getTotal();
+		await this.orderRepository.save(order);
+		return {
+			total,
+			freight
+		};
 	}
 }
 

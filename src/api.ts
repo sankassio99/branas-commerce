@@ -5,7 +5,6 @@ import Item from './domain/entities/item';
 import Order from './domain/entities/order';
 import Product from './domain/entities/product';
 import CurrencyApiFake from '../test/fakes/currencyApiFake';
-import { validate } from './validator';
 const app = express();
 app.use(express.json());
 
@@ -16,12 +15,6 @@ let currencyApi: ICurrencyGateway = new CurrencyApiFake();
 
 app.post('/checkout', function (req: Request, res: Response) {
   output = { freight: 0 };
-
-  const isValid = validate(req.body.cpf);
-
-  if (!isValid) {
-    output.message = `Invalid cpf`;
-  }
 
   myOrder = new Order("746.971.314-01", currencyApi);
   output.order = myOrder;

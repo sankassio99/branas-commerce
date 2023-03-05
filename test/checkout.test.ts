@@ -1,20 +1,53 @@
-import Order from "../src/domain/entities/order";
-import Product from "../src/domain/entities/product";
+import IOrderRepository from "../src/application/repository/iOrderRepository";
+import ICurrencyGateway from "../src/application/gateway/ICurrencyGateway";
 import CurrencyApiFake from "./fakes/currencyApiFake";
+import Checkout from "../src/application/usecase/Checkout";
+import ICouponRepository from "../src/application/repository/iCouponRepository";
+import IProductRepository from "../src/application/repository/iProductRepository";
+import ProductRepositoryFake from "./fakes/productRepositoryFake";
+import CouponRepositoryFake from "./fakes/couponRepositoryFake";
+import OrderRepositoryFake from "./fakes/orderRepositoryFake";
+import { mock, verify, anyOfClass, instance } from "ts-mockito";
+import Order from "../src/domain/entities/order";
 
-
-test.skip('should save order in database persistence', async () => {
-    // Ararnge
-    let product1 = new Product({ desc: "", price: 100.0, quantity: 1, width: 100, height: 30, deep: 10, weight: 10, id: "1" });
-    let product2 = new Product({ desc: "", price: 100.0, quantity: 1, width: 100, height: 30, deep: 10, weight: 10, id: "2" });
-    let product3 = new Product({ desc: "", price: 100.0, quantity: 3, width: 100, height: 30, deep: 10, weight: 10, id: "3" });
-    let products = [product1, product2, product3];
-
-    // Act
-    let order = new Order("444.555.666-77",new CurrencyApiFake());
-    order.addItems(products);
-
-    //Arrange
-
-
+let checkout: Checkout;
+let currencyGateway: ICurrencyGateway;
+let productRepository: IProductRepository;
+let couponRepository: ICouponRepository;
+let orderRepository: IOrderRepository;
+let orderRepositoryMock : IOrderRepository;
+beforeEach(() => {
+    productRepository = new ProductRepositoryFake();
+    couponRepository = new CouponRepositoryFake();
+    orderRepositoryMock = mock(orderRepository);
+    orderRepository = instance(orderRepositoryMock);
+    currencyGateway = new CurrencyApiFake();
+    checkout = new Checkout(
+        currencyGateway,
+        productRepository,
+        couponRepository,
+        orderRepository
+    );
 });
+
+test("should save order in database persistence", async () => {
+    // Ararnge
+    const input = {
+        cpf: "407.302.170-27",
+        items: [],
+    };
+    // Act
+    checkout.execute(input);
+    //Arrange
+    verify(orderRepositoryMock.save(anyOfClass(Order))).called();
+    
+});
+
+// const orderRepository = class implements IOrderRepository {
+//     getOrder(id: String): Promise<any> {
+//         throw new Error("Method not implemented.");
+//     }
+//     save(order: Order): Promise<void> {
+//         throw new Error("Method not implemented.");
+//     }
+// }
