@@ -1,6 +1,6 @@
 export default class Cpf {
     constructor(readonly value : string){
-        if(!this.validate(value)) throw new Error("invalid cpf");
+        if(!this.validate(value)) throw new Error("Invalid cpf");
     }
 
     calculateDigit (cpf: string, factor: number) {

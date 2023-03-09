@@ -1,5 +1,8 @@
 import axios from "axios";
 
+axios.defaults.validateStatus = function () {
+	return true;
+}
 
 test('Dont should accept a order with invalid CPF', async () => {
     const input = {

@@ -11,6 +11,10 @@ export default class ProductRepositoryFake implements IProductRepository {
     }
 
     async getProduct(idProduct: number): Promise<any> {
-        return data.jsonProducts.find((element) => parseInt(element.id) == idProduct);
+        const product = data.jsonProducts.find((element) => parseInt(element.id) == idProduct);
+        if(!product){
+            throw new Error(`Product ${idProduct} not found`);
+        }
+        return product;
     }
 }

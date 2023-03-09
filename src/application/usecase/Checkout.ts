@@ -24,7 +24,7 @@ export default class Checkout {
 		let freight = 0;
 		if (input.items) {
 			for (const item of input.items) {
-				const product = await this.productRepository.getProduct(item.idProduct);
+				const product = await this.productRepository.getProduct(item.id);
 				order.addItem(product, item.quantity);
 				const itemFreight = FreightCalculator.calculate(product);
 				freight += itemFreight;
@@ -48,7 +48,7 @@ export default class Checkout {
 
 type Input = {
 	cpf: string,
-	items: { idProduct: number, quantity: number }[],
+	items: { id: number, quantity: number }[],
 	coupon?: string,
 	from?: string,
 	to?: string
