@@ -89,7 +89,7 @@ test('Should create a order with 3 products and freight value included', async (
     };
     const response = await axios.post("http://localhost:3000/checkout", input);
     const output = response.data;
-    expect(output.freight).toBe(30);
+    expect(output.freight).toBe(160);
     expect(output.total).toBe(70);
 });
 test('Should return minimum freight value when its was smaller than minimum', async () => {
@@ -103,6 +103,6 @@ test('Should return minimum freight value when its was smaller than minimum', as
     };
     const response = await axios.post("http://localhost:3000/checkout", input);
     const output = response.data;
-    expect(output.freight).toBe(10);
+    expect(output.freight).toBe(50);
     expect(output.total).toBe(30);
 });

@@ -30,9 +30,9 @@ export default class Checkout {
 				freight += itemFreight;
 			}
 		}
-		// if (input.from && input.to) {
-		// 	order.freight = freight;
-		// }
+		if (input.from && input.to) {
+			order.freight = freight;
+		}
 		let message;
 		if (input.coupon) {
 			const coupon = await this.couponRepository.get(input.coupon);

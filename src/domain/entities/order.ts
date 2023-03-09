@@ -8,10 +8,12 @@ export default class Order {
     discountCoupon?: number;
     cpf : Cpf;
     currencyApi : ICurrencyGateway;
+	freight: number;
 
-    constructor(cpf : string, currencyApi : ICurrencyGateway, readonly uuid? : string) {
+    constructor(cpf : string, currencyApi : ICurrencyGateway, freight? : number , readonly uuid? : string) {
         this.cpf = new Cpf(cpf);
         this.currencyApi = currencyApi;
+        this.freight = freight ?? 0;
     }
  
     getOrderDetails() {
