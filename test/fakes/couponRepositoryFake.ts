@@ -2,7 +2,10 @@ import ICouponRepository from "../../src/application/repository/iCouponRepositor
 
 
 export default class CouponRepositoryFake implements ICouponRepository{
-    get(id: String): Promise<any> {
-        throw new Error("Method not implemented.");
+    async get(id: String): Promise<any> {
+        if("VALE20"){
+            return 20;
+        }
+        return 1;
     }
 }

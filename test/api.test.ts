@@ -43,7 +43,7 @@ test('Should create a order with 3 products with discount coupon', async () => {
             { id: '2', quantity: 1 },
             { id: '3', quantity: 3 },
         ],
-        discountCoupon: "VALE20",
+        coupon: "VALE20",
     };
     const response = await axios.post("http://localhost:3000/checkout", input);
     const output = response.data;
@@ -57,7 +57,7 @@ test('Should not apply a expired discount coupon', async () => {
         items: [
             { id: '1', quantity: 2 },
         ],
-        discountCoupon: "VALE10",
+        coupon: "VALE10",
     };
     const response = await axios.post("http://localhost:3000/checkout", input);
     const output = response.data;
