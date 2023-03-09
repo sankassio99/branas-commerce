@@ -24,7 +24,7 @@ export default {
     ],
     jsonOrders: [new Order("407.302.170-27",new CurrencyApiFake())],
     jsonCoupons: [
-        { id: "1", expired: false, desc: "VALE20", value: 20 },
-        { id: "2", expired: true, desc: "VALE10", value: 10 },
+        { id: "VALE20", expired: false, desc: "VALE20", value: 20 },
+        { id: "VALE10", expired: true, desc: "VALE10", value: 10 },
     ]
 }

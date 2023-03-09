@@ -27,7 +27,7 @@ export default class Order {
     }
 
     addItem(product: Product, quantity : number) {
-        if(quantity < 1) throw new Error("invalid quantity");
+        if(quantity < 1) throw new Error("Invalid quantity");
         this.items.push(new Item(product.id, product.price, quantity, product.currency));
     }
 
@@ -37,7 +37,6 @@ export default class Order {
         this.items.forEach(product => {
             total += product.unitPrice * product.quantity * this.currencyApi.getCurreny(product.currency);
         });
-
         if (this.discountCoupon) {
             var discountValue = total * (this.discountCoupon / 100)
             total = total - discountValue;

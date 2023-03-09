@@ -1,11 +1,13 @@
 import ICouponRepository from "../../src/application/repository/iCouponRepository";
+import data from "../../src/infra/data/data";
 
 
 export default class CouponRepositoryFake implements ICouponRepository{
     async get(id: String): Promise<any> {
-        if("VALE20"){
-            return 20;
+        const coupon = data.jsonCoupons.find((element) => element.id == id);
+        if(!coupon){
+            throw new Error(`Coupon not found`);
         }
-        return 1;
+        return coupon;
     }
 }
