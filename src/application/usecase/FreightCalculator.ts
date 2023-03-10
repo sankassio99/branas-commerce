@@ -1,5 +1,7 @@
 import Product from "../../domain/entities/product";
 
+// Freight calculator é uma entidate para o Clean Architecture porque é uma regra idependente
+// poderia usar ele em varios lugares
 export default class FreightCalculator {
 	static calculate (product: Product, quantity : number = 1) {
 		const volume = product.getVolume();
