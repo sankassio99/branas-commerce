@@ -26,7 +26,7 @@ export default class Checkout {
 			for (const item of input.items) {
 				const product = await this.productRepository.getProduct(item.id);
 				order.addItem(product, item.quantity);
-				const itemFreight = FreightCalculator.calculate(product);
+				const itemFreight = FreightCalculator.calculate(product, item.quantity);
 				freight += itemFreight;
 			}
 		}

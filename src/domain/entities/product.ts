@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export default class Product {
+	
     id: string;
     desc: String;
     price: number;
@@ -32,4 +33,8 @@ export default class Product {
         this.weight = weight;
         this.currency = currency ? currency : "BRL";
     }
+
+    getVolume() {
+		return this.width/100 * this.height/100 * this.deep/100;
+	}
 }
