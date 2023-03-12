@@ -1,18 +1,17 @@
 import Order from "../src/domain/entities/order";
 import Product from "../src/domain/entities/product";
 import crypto from "crypto";
-import CurrencyApiFake from "../src/infra/fakes/currencyApiFake";
-import ICurrencyGateway from "../src/application/gateway/iCurrencyGateway";
+import CurrencyTable from "../src/domain/entities/CurrencyTable";
 
-let currencyApi: ICurrencyGateway;
+let currencyTable: CurrencyTable;
 
 beforeEach(function () {
-    currencyApi = new CurrencyApiFake();
+    currencyTable = new CurrencyTable();
 });
 
 test("should create a empty order", () => {
     const uuid = crypto.randomUUID();
-    const order = new Order("746.971.314-01", currencyApi, undefined, uuid);
+    const order = new Order("746.971.314-01", currencyTable, undefined, uuid);
     expect(order.getTotal()).toBe(0);
 });
 
@@ -52,7 +51,7 @@ test("Should create a order with 3 products", function () {
     let products = [product1, product2, product3];
 
     // Act
-    let order = new Order("746.971.314-01", currencyApi);
+    let order = new Order("746.971.314-01", currencyTable);
     order.addItems(products);
 
     // Assert
@@ -95,7 +94,7 @@ test("Should calculate total value", function () {
     let products = [product1, product2, product3];
 
     // Act
-    let order = new Order("746.971.314-01", currencyApi);
+    let order = new Order("746.971.314-01", currencyTable);
     order.addItems(products);
 
     // Assert
@@ -141,7 +140,7 @@ test("Should get total value with discount after associate coupon", function () 
     let discountCoupon: number = 10;
 
     // Act
-    let order = new Order("746.971.314-01", currencyApi);
+    let order = new Order("746.971.314-01", currencyTable);
     order.addItems(products);
     order.addDiscountCoupon(discountCoupon);
 
@@ -154,7 +153,7 @@ test("Should get total value with discount after associate coupon", function () 
 test("should not create a Order with invalid CPF", () => {
     const uuid = crypto.randomUUID();
     expect(
-        () => new Order("666.666.666-11", currencyApi, undefined, uuid)
+        () => new Order("666.666.666-11", currencyTable, undefined, uuid)
     ).toThrow(new Error("Invalid cpf"));
 });
 
@@ -172,7 +171,7 @@ test("Should not add item with quantity invalid", function () {
     });
 
     // Act
-    let order = new Order("746.971.314-01", currencyApi);
+    let order = new Order("746.971.314-01", currencyTable);
 
     // Assert
     expect(() => order.addItem(product, -10)).toThrow(
@@ -183,6 +182,7 @@ test("Should not add item with quantity invalid", function () {
 test("Should add item with dolar currency and convert total to real currency", function () {
     // Ararnge
     const dolarCurrency = 3;
+    currencyTable.addCurrency("USD",dolarCurrency);
     let product = new Product({
         desc: "",
         price: 100.0,
@@ -196,7 +196,7 @@ test("Should add item with dolar currency and convert total to real currency", f
     });
 
     // Act
-    let order = new Order("746.971.314-01", currencyApi);
+    let order = new Order("746.971.314-01", currencyTable);
     order.addItem(product, 1);
 
     // Assert

@@ -7,7 +7,6 @@ import IProductRepository from "../src/application/repository/iProductRepository
 import ProductRepositoryFake from "../src/infra/fakes/productRepositoryFake";
 import CouponRepositoryFake from "../src/infra/fakes/couponRepositoryFake";
 import OrderRepositoryFake from "../src/infra/fakes/orderRepositoryFake";
-import Order from "../src/domain/entities/order";
 import sinon from "sinon";
 import Product from "../src/domain/entities/product";
 
