@@ -203,3 +203,17 @@ test("Should add item with dolar currency and convert total to real currency", f
     const expectValue = product.price * dolarCurrency;
     expect(order.getTotal()).toBe(expectValue);
 });
+
+test("When a order is created must generate order code based on date", function () {
+    // Arrange
+    const uuid = crypto.randomUUID();
+    const cpf = "407.302.170-27";
+    const date = new Date("2023-10-01T10:00:00");
+
+    // Act
+    const order = new Order(cpf, currencyTable, undefined, uuid, date);
+
+    // Assert
+    const expectedCode = `${date.getFullYear}${new String(uuid).padStart(8,"0")}`;
+    expect(order.getCode()).toBe(expectedCode);
+});

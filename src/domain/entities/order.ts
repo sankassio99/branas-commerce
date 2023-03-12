@@ -5,6 +5,9 @@ import ICurrencyGateway from "../../application/gateway/iCurrencyGateway";
 import CurrencyTable from "./CurrencyTable";
 
 export default class Order {
+    getCode(): any {
+        throw new Error("Method not implemented.");
+    }
     items: Array<Item> = [];
     discountCoupon?: number;
     cpf: Cpf;
@@ -14,7 +17,8 @@ export default class Order {
         cpf: string,
         readonly currencyTable: CurrencyTable = new CurrencyTable(),
         freight?: number,
-        readonly uuid?: string
+        readonly uuid?: string,
+        readonly date?: Date,
     ) {
         this.cpf = new Cpf(cpf);
         this.freight = freight ?? 0;
