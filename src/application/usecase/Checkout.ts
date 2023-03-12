@@ -45,7 +45,6 @@ export default class Checkout {
 		}
 		let total = order.getTotal();
 		await this.orderRepository.save(order);
-		await this.orderRepository.save(order);
 		return {
 			total,
 			freight,

@@ -7,25 +7,21 @@ import IProductRepository from "../src/application/repository/iProductRepository
 import ProductRepositoryFake from "../src/infra/fakes/productRepositoryFake";
 import CouponRepositoryFake from "../src/infra/fakes/couponRepositoryFake";
 import OrderRepositoryFake from "../src/infra/fakes/orderRepositoryFake";
-import { mock, verify, anyOfClass, instance, when, anyString } from "ts-mockito";
 import Order from "../src/domain/entities/order";
+import sinon from "sinon";
 
 let checkout: Checkout;
 let currencyGateway: ICurrencyGateway;
-let currencyGatewayMock: ICurrencyGateway;
-let currencyGatewayFake: CurrencyApiFake;
 let productRepository: IProductRepository;
 let couponRepository: ICouponRepository;
 let orderRepository: IOrderRepository;
-let orderRepositoryMock : IOrderRepository;
 
-function myBeforeEach() {
+beforeEach(() => {
     productRepository = new ProductRepositoryFake();
     couponRepository = new CouponRepositoryFake();
-    orderRepositoryMock = mock(orderRepository);
-    orderRepository = instance(orderRepositoryMock);
-    currencyGatewayMock = mock(currencyGateway);
-    currencyGateway = instance(currencyGatewayMock);
+    orderRepository = new OrderRepositoryFake();
+    currencyGateway = new CurrencyApiFake();
+    
 
     checkout = new Checkout(
         currencyGateway,
@@ -33,27 +29,25 @@ function myBeforeEach() {
         couponRepository,
         orderRepository
     );
-
-    when(currencyGatewayMock.getCurrencies()).thenResolve({usd:3});
-}
+});
 
 test("should save order in database persistence", async () => {
-    myBeforeEach();
+    // use spy when you need verify if function is called 
+	const spyOrderRepository = sinon.spy(OrderRepositoryFake.prototype, "save");
+
     // Ararnge
     const input = {
         cpf: "407.302.170-27",
         items: [],
     };
     // Act
-    checkout.execute(input);
+    await checkout.execute(input);
     //Arrange
-    verify(orderRepositoryMock.save(anyOfClass(Order))).called();
+    expect(spyOrderRepository.calledOnce).toBeTruthy();
     
 });
 
 test("Should create a order with 1 product in dolar value", async function () {
-    myBeforeEach();
-
 	const input = {
 		cpf: "407.302.170-27",
 		items: [
