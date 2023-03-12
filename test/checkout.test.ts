@@ -9,6 +9,7 @@ import CouponRepositoryFake from "../src/infra/fakes/couponRepositoryFake";
 import OrderRepositoryFake from "../src/infra/fakes/orderRepositoryFake";
 import Order from "../src/domain/entities/order";
 import sinon from "sinon";
+import Product from "../src/domain/entities/product";
 
 let checkout: Checkout;
 let currencyGateway: ICurrencyGateway;
@@ -48,6 +49,21 @@ test("should save order in database persistence", async () => {
 });
 
 test("Should create a order with 1 product in dolar value", async function () {
+    // Arrange
+    const price = 999;
+    const usdCurrency = 3;
+
+    // use stub when you want to controll method behavior to return a specific value to direct the right path
+    const stubCurrencyGateway = sinon.stub(CurrencyApiFake.prototype, "getCurrencies").resolves({
+		usd: usdCurrency
+	});
+	const stubProductRepository = sinon.stub(ProductRepositoryFake.prototype, "getProduct").resolves(
+		new Product({
+            desc: "Iphone 14 - Imported", price: price, height: 5, weight: 5,
+            deep: 10, quantity: 1, width: 1, id: "4", currency: "USD",
+        }),
+	)
+
 	const input = {
 		cpf: "407.302.170-27",
 		items: [
@@ -55,7 +71,10 @@ test("Should create a order with 1 product in dolar value", async function () {
 		]
 	};
 	const output = await checkout.execute(input);
-	expect(output.total).toBe(2997);
+    const expectPrice = price * usdCurrency;
+	expect(output.total).toBe(expectPrice);
+    stubCurrencyGateway.restore();
+	stubProductRepository.restore();
 });
 
 // const orderRepository = class implements IOrderRepository {
