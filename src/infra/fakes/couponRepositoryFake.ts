@@ -1,5 +1,5 @@
-import ICouponRepository from "../../src/application/repository/iCouponRepository";
-import data from "../../src/infra/data/data";
+import ICouponRepository from "../../application/repository/iCouponRepository";
+import data from "../data/data";
 
 
 export default class CouponRepositoryFake implements ICouponRepository{

@@ -1,12 +1,12 @@
 import IOrderRepository from "../src/application/repository/iOrderRepository";
 import ICurrencyGateway from "../src/application/gateway/ICurrencyGateway";
-import CurrencyApiFake from "./fakes/currencyApiFake";
+import CurrencyApiFake from "../src/infra/fakes/currencyApiFake";
 import Checkout from "../src/application/usecase/Checkout";
 import ICouponRepository from "../src/application/repository/iCouponRepository";
 import IProductRepository from "../src/application/repository/iProductRepository";
-import ProductRepositoryFake from "./fakes/productRepositoryFake";
-import CouponRepositoryFake from "./fakes/couponRepositoryFake";
-import OrderRepositoryFake from "./fakes/orderRepositoryFake";
+import ProductRepositoryFake from "../src/infra/fakes/productRepositoryFake";
+import CouponRepositoryFake from "../src/infra/fakes/couponRepositoryFake";
+import OrderRepositoryFake from "../src/infra/fakes/orderRepositoryFake";
 import { mock, verify, anyOfClass, instance } from "ts-mockito";
 import Order from "../src/domain/entities/order";
 

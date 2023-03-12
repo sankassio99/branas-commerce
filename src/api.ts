@@ -4,14 +4,14 @@ import data from "./infra/data/data";
 import Item from "./domain/entities/item";
 import Order from "./domain/entities/order";
 import Product from "./domain/entities/product";
-import CurrencyApiFake from "../test/fakes/currencyApiFake";
+import CurrencyApiFake from "./infra/fakes/currencyApiFake";
 import Checkout from "./application/usecase/Checkout";
 import IProductRepository from "./application/repository/iProductRepository";
 import ICouponRepository from "./application/repository/iCouponRepository";
 import IOrderRepository from "./application/repository/iOrderRepository";
-import ProductRepositoryFake from "../test/fakes/productRepositoryFake";
-import CouponRepositoryFake from "../test/fakes/couponRepositoryFake";
-import OrderRepositoryFake from "../test/fakes/orderRepositoryFake";
+import ProductRepositoryFake from "./infra/fakes/productRepositoryFake";
+import CouponRepositoryFake from "./infra/fakes/couponRepositoryFake";
+import OrderRepositoryFake from "./infra/fakes/orderRepositoryFake";
 const app = express();
 app.use(express.json());
 
