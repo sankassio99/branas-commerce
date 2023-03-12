@@ -19,7 +19,7 @@ let couponRepository: ICouponRepository;
 let orderRepository: IOrderRepository;
 let orderRepositoryMock : IOrderRepository;
 
-beforeEach(() => {
+function myBeforeEach() {
     productRepository = new ProductRepositoryFake();
     couponRepository = new CouponRepositoryFake();
     orderRepositoryMock = mock(orderRepository);
@@ -33,11 +33,12 @@ beforeEach(() => {
         couponRepository,
         orderRepository
     );
-});
+
+    when(currencyGatewayMock.getCurrencies()).thenResolve({usd:3});
+}
 
 test("should save order in database persistence", async () => {
-    when(currencyGatewayMock.getCurrencies()).thenResolve({usd:3});
-
+    myBeforeEach();
     // Ararnge
     const input = {
         cpf: "407.302.170-27",
@@ -46,12 +47,12 @@ test("should save order in database persistence", async () => {
     // Act
     checkout.execute(input);
     //Arrange
-    // verify(orderRepositoryMock.save(anyOfClass(Order))).called();
+    verify(orderRepositoryMock.save(anyOfClass(Order))).called();
     
 });
 
 test("Should create a order with 1 product in dolar value", async function () {
-    when(currencyGatewayMock.getCurrencies()).thenResolve({usd:3});
+    myBeforeEach();
 
 	const input = {
 		cpf: "407.302.170-27",
