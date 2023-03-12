@@ -4,10 +4,10 @@ export default class CurrencyApiFake implements ICurrencyGateway {
     constructor() {
     }
 
-    getCurrencies(): Promise<any> {
-        throw new Error("Method not implemented.");
+    async getCurrencies(): Promise<any> {
+        return {usd: 3}
     }
-    getCurreny(currency: string): number {
+    getCurrency(currency: string): number {
         if(currency == "USD") return 3;
 
         return 1;

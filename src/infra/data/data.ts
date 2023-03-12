@@ -21,8 +21,12 @@ export default {
             desc: "Tv LED 4k", price: 30, height: 5, weight: 5,
             deep: 10, quantity: 1, width: 1, id: "3",
         }),
+        new Product({
+            desc: "Iphone 14 - Imported", price: 999, height: 5, weight: 5,
+            deep: 10, quantity: 1, width: 1, id: "4", currency: "USD",
+        }),
     ],
-    jsonOrders: [new Order("407.302.170-27",new CurrencyApiFake())],
+    jsonOrders: [new Order("407.302.170-27")],
     jsonCoupons: [
         { id: "VALE20", expired: false, desc: "VALE20", value: 20 },
         { id: "VALE10", expired: true, desc: "VALE10", value: 10 },

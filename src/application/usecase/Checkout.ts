@@ -4,6 +4,7 @@ import FreightCalculator from "./FreightCalculator";
 import IProductRepository from "../repository/iProductRepository";
 import IOrderRepository from "../repository/iOrderRepository";
 import Order from "../../domain/entities/order";
+import CurrencyTable from "../../domain/entities/CurrencyTable";
 
 export default class Checkout {
 
@@ -16,11 +17,11 @@ export default class Checkout {
 	}
 
 	async execute (input: Input): Promise<Output> {
-		// const currencies = await this.currencyGateway.getCurrencies();
-		// const currencyTable = new CurrencyTable();
-		// currencyTable.addCurrency("USD", currencies.usd);
+		const currencies = await this.currencyGateway.getCurrencies();
+		const currencyTable = new CurrencyTable();
+		currencyTable.addCurrency("USD", currencies.usd);
 		// const sequence = await this.orderRepository.count();
-		const order = new Order(input.cpf, this.currencyGateway);
+		const order = new Order(input.cpf, currencyTable);
 		let freight = 0;
 		if (input.items) {
 			for (const item of input.items) {
@@ -43,6 +44,7 @@ export default class Checkout {
 			}
 		}
 		let total = order.getTotal();
+		await this.orderRepository.save(order);
 		await this.orderRepository.save(order);
 		return {
 			total,
