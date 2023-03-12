@@ -12,16 +12,15 @@ export default class Checkout {
 		readonly currencyGateway: ICurrencyGateway,
 		readonly productRepository: IProductRepository,
 		readonly couponRepository: ICouponRepository,
-		readonly orderRepository: IOrderRepository
+		readonly orderRepository: IOrderRepository,
+		readonly currencyTable = new CurrencyTable()
 	) {
 	}
 
 	async execute (input: Input): Promise<Output> {
 		const currencies = await this.currencyGateway.getCurrencies();
-		const currencyTable = new CurrencyTable();
-		currencyTable.addCurrency("USD", currencies.usd);
-		// const sequence = await this.orderRepository.count();
-		const order = new Order(input.cpf, currencyTable);
+		this.currencyTable.addCurrency("USD", currencies.usd);
+		const order = new Order(input.cpf, this.currencyTable);
 		let freight = 0;
 		if (input.items) {
 			for (const item of input.items) {
