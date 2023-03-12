@@ -1,17 +1,14 @@
 import Item from "./item";
 import Product from "./product";
 import Cpf from "./cpf";
-import ICurrencyGateway from "../../application/gateway/iCurrencyGateway";
 import CurrencyTable from "./CurrencyTable";
 
 export default class Order {
-    getCode(): any {
-        throw new Error("Method not implemented.");
-    }
     items: Array<Item> = [];
     discountCoupon?: number;
     cpf: Cpf;
     freight: number;
+    readonly code: string;
 
     constructor(
         cpf: string,
@@ -22,6 +19,11 @@ export default class Order {
     ) {
         this.cpf = new Cpf(cpf);
         this.freight = freight ?? 0;
+        this.code = this.generateCode();
+    }
+
+    private generateCode(): string {
+        return `${this.date?.getFullYear}${new String(this.uuid).padStart(8, "0")}`;
     }
 
     getOrderDetails() {
@@ -69,5 +71,9 @@ export default class Order {
 
     addDiscountCoupon(discountCoupon: number) {
         this.discountCoupon = discountCoupon;
+    }
+
+    getCode(): string {
+        return this.code;
     }
 }
