@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1678636524232" clover="3.2.0">
+  <project timestamp="1678636524232" name="All files">
+    <metrics statements="131" coveredstatements="114" conditionals="34" coveredconditionals="21" methods="39" coveredmethods="32" elements="204" coveredelements="167" complexity="0" loc="131" ncloc="131" packages="4" files="12" classes="12"/>
+    <package name="application.usecase">
+      <metrics statements="37" coveredstatements="32" conditionals="9" coveredconditionals="4" methods="3" coveredmethods="3"/>
+      <file name="Checkout.ts" path="C:\Users\kassi\OneDrive\Documentos\My Personal\branas-course\branas-commerce\src\application\usecase\Checkout.ts">
+        <metrics statements="29" coveredstatements="24" conditionals="7" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="26" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="34" count="2" type="cond" truecount="1" falsecount="2"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="38" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
+      </file>
+      <file name="FreightCalculator.ts" path="C:\Users\kassi\OneDrive\Documentos\My Personal\branas-course\branas-commerce\src\application\usecase\FreightCalculator.ts">
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="domain.entities">
+      <metrics statements="70" coveredstatements="69" conditionals="22" coveredconditionals="17" methods="24" coveredmethods="24"/>
+      <file name="cpf.ts" path="C:\Users\kassi\OneDrive\Documentos\My Personal\branas-course\branas-commerce\src\domain\entities\cpf.ts">
+        <metrics statements="21" coveredstatements="21" conditionals="7" coveredconditionals="4" methods="8" coveredmethods="8"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="11" type="stmt"/>
+        <line num="3" count="11" type="cond" truecount="1" falsecount="0"/>
+        <line num="7" count="22" type="stmt"/>
+        <line num="8" count="22" type="stmt"/>
+        <line num="9" count="242" type="cond" truecount="1" falsecount="0"/>
+        <line num="11" count="22" type="stmt"/>
+        <line num="12" count="22" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="11" type="stmt"/>
+        <line num="20" count="11" type="stmt"/>
+        <line num="24" count="30" type="stmt"/>
+        <line num="28" count="11" type="stmt"/>
+        <line num="32" count="11" type="cond" truecount="0" falsecount="1"/>
+        <line num="33" count="11" type="stmt"/>
+        <line num="34" count="11" type="cond" truecount="0" falsecount="1"/>
+        <line num="35" count="11" type="cond" truecount="0" falsecount="1"/>
+        <line num="36" count="11" type="stmt"/>
+        <line num="37" count="11" type="stmt"/>
+        <line num="38" count="11" type="stmt"/>
+        <line num="39" count="11" type="stmt"/>
+        <line num="40" count="11" type="stmt"/>
+      </file>
+      <file name="currencyTable.ts" path="C:\Users\kassi\OneDrive\Documentos\My Personal\branas-course\branas-commerce\src\domain\entities\currencyTable.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="5" count="11" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="15" count="8" type="stmt"/>
+      </file>
+      <file name="item.ts" path="C:\Users\kassi\OneDrive\Documentos\My Personal\branas-course\branas-commerce\src\domain\entities\item.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="3" count="11" type="stmt"/>
+        <line num="4" count="11" type="stmt"/>
+        <line num="5" count="11" type="stmt"/>
+        <line num="6" count="11" type="stmt"/>
+      </file>
+      <file name="order.ts" path="C:\Users\kassi\OneDrive\Documentos\My Personal\branas-course\branas-commerce\src\domain\entities\order.ts">
+        <metrics statements="26" coveredstatements="26" conditionals="11" coveredconditionals="10" methods="10" coveredmethods="10"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="11" type="stmt"/>
+        <line num="15" count="11" type="cond" truecount="1" falsecount="0"/>
+        <line num="17" count="11" type="stmt"/>
+        <line num="18" count="11" type="stmt"/>
+        <line num="20" count="11" type="stmt"/>
+        <line num="21" count="10" type="cond" truecount="3" falsecount="1"/>
+        <line num="22" count="10" type="stmt"/>
+        <line num="26" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
+        <line num="37" count="9" type="stmt"/>
+        <line num="49" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="50" count="2" type="stmt"/>
+        <line num="56" count="6" type="stmt"/>
+        <line num="58" count="6" type="stmt"/>
+        <line num="59" count="8" type="stmt"/>
+        <line num="64" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="69" count="6" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+      </file>
+      <file name="product.ts" path="C:\Users\kassi\OneDrive\Documentos\My Personal\branas-course\branas-commerce\src\domain\entities\product.ts">
+        <metrics statements="14" coveredstatements="13" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="22" count="20" type="cond" truecount="1" falsecount="1"/>
+        <line num="23" count="20" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="20" type="stmt"/>
+        <line num="28" count="20" type="stmt"/>
+        <line num="29" count="20" type="stmt"/>
+        <line num="30" count="20" type="stmt"/>
+        <line num="31" count="20" type="stmt"/>
+        <line num="32" count="20" type="stmt"/>
+        <line num="33" count="20" type="stmt"/>
+        <line num="34" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="infra.data">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="data.ts" path="C:\Users\kassi\OneDrive\Documentos\My Personal\branas-course\branas-commerce\src\infra\data\data.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="infra.fakes">
+      <metrics statements="20" coveredstatements="9" conditionals="3" coveredconditionals="0" methods="12" coveredmethods="5"/>
+      <file name="couponRepositoryFake.ts" path="C:\Users\kassi\OneDrive\Documentos\My Personal\branas-course\branas-commerce\src\infra\fakes\couponRepositoryFake.ts">
+        <metrics statements="6" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+      <file name="currencyApiFake.ts" path="C:\Users\kassi\OneDrive\Documentos\My Personal\branas-course\branas-commerce\src\infra\fakes\currencyApiFake.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="11" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+      <file name="orderRepositoryFake.ts" path="C:\Users\kassi\OneDrive\Documentos\My Personal\branas-course\branas-commerce\src\infra\fakes\orderRepositoryFake.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+      </file>
+      <file name="productRepositoryFake.ts" path="C:\Users\kassi\OneDrive\Documentos\My Personal\branas-course\branas-commerce\src\infra\fakes\productRepositoryFake.ts">
+        <metrics statements="7" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
