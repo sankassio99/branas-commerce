@@ -1,4 +1,3 @@
-import Product from "../../domain/entities/product";
 import IProductRepository from "../repository/iProductRepository";
 
 
