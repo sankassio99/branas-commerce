@@ -56,7 +56,7 @@ test("Should create a order with 1 product in dolar value", async function () {
     const stubCurrencyGateway = sinon.stub(CurrencyApiFake.prototype, "getCurrencies").resolves({
 		usd: usdCurrency
 	});
-	const stubProductRepository = sinon.stub(ProductRepositoryFake.prototype, "getProduct").resolves(
+	const stubProductRepository = sinon.stub(ProductRepositoryFake.prototype, "get").resolves(
 		new Product({
             desc: "Iphone 14 - Imported", price: price, height: 5, weight: 5,
             deep: 10, quantity: 1, width: 1, id: "4", currency: "USD",
