@@ -6,7 +6,7 @@ export default class ProductRepositoryFake implements IProductRepository {
     constructor() {
     }
 
-    getAll(id : number): Promise<Product[]> {
+    getAll(): Promise<Product[]> {
         throw new Error('Method not implemented.');
     }
 

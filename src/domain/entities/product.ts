@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 export default class Product {
 	
     id: string;
-    desc: String;
+    desc: string;
     price: number;
     quantity: number;
     width: number;
@@ -15,7 +15,7 @@ export default class Product {
     constructor({ desc, price,
         quantity, width, height,
         deep: length, weight, currency, id }: {
-            desc: String, price: number,
+            desc: string, price: number,
             quantity: number, width: number, height: number,
             deep: number, weight: number, currency? : string, id?: string
         }) {

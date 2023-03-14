@@ -10,23 +10,24 @@ export default class GetProducts {
     }
 
     async execute() : Promise<any> {
-        // let output;
-        // const products = await this.productRepository.getAll(id);
+        let output : Output = [];
+        const products = await this.productRepository.getAll();
 
-        // array.forEach(element => {
-            
-        // });
-        //  {
-        //     id: product.id,
-        //     description: product.desc,
-        //     price: product.price,
-        // }
+        products.forEach(product => {
+            output.push({
+                id: product.id,
+                description: product.desc,
+                price: product.price,
+            })
+        });
+         
+        return output;
     }
 
 }
 
 type Output = {
-	id: number,
+	id: string,
 	description: string,
 	price: number
 }[]
