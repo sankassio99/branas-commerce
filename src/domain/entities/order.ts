@@ -23,7 +23,7 @@ export default class Order {
     }
 
     private generateCode(): string {
-        return `${this.date?.getFullYear}${new String(this.uuid).padStart(8, "0")}`;
+        return `${this.date?.getFullYear()}${new String(this.uuid).padStart(8, "0")}`;
     }
 
     getOrderDetails() {
