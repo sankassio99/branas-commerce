@@ -214,6 +214,6 @@ test("When a order is created must generate order code based on date", function 
     const order = new Order(cpf, currencyTable, undefined, uuid, date);
 
     // Assert
-    const expectedCode = `${date.getFullYear}${new String(uuid).padStart(8,"0")}`;
+    const expectedCode = `${date?.getFullYear()}${new String(uuid).padStart(8, "0")}`;
     expect(order.getCode()).toBe(expectedCode);
 });
