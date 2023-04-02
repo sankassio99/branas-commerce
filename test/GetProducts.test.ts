@@ -1,7 +1,6 @@
 import GetProducts from "../src/application/usecase/GetProducts";
 import ProductRepositoryFake from "../src/infra/fakes/productRepositoryFake";
 import sinon from "sinon";
-import data from "../src/infra/data/data";
 import Product from "../src/domain/entities/Product";
 
 beforeEach(()=>{
