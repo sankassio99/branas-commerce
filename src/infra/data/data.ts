@@ -28,7 +28,7 @@ export default {
     ],
     jsonOrders: [new Order("407.302.170-27")],
     jsonCoupons: [
-        { id: "VALE20", expired: false, desc: "VALE20", value: 20 },
-        { id: "VALE10", expired: true, desc: "VALE10", value: 10 },
+        { code: "VALE20", expired: false, desc: "VALE20", value: 20, expireDate: "2025-10-01T10:00:00" },
+        { code: "VALE10", expired: true, desc: "VALE10", value: 10, expireDate: "2021-10-01T10:00:00" },
     ]
 }
