@@ -1,5 +1,5 @@
-import FreightCalculator from "../src/application/usecase/FreightCalculator";
-import Product from "../src/domain/entities/product";
+import FreightCalculator from "../src/domain/entities/FreightCalculator";
+import Product from "../src/domain/entities/Product";
 
 
 test("Should calculate product freght of a item with 1 quantity", function () {

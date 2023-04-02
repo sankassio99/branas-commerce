@@ -1,5 +1,5 @@
-import Order from '../../domain/entities/order';
-import Product from '../../domain/entities/product';
+import Order from '../../domain/entities/Order';
+import Product from '../../domain/entities/Product';
 import CurrencyApiFake from '../fakes/currencyApiFake';
 
 var product = new Product({

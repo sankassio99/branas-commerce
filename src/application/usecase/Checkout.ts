@@ -1,9 +1,9 @@
 import ICouponRepository from "../repository/iCouponRepository";
 import ICurrencyGateway from "../gateway/iCurrencyGateway";
-import FreightCalculator from "./FreightCalculator";
+import FreightCalculator from "../../domain/entities/FreightCalculator";
 import IProductRepository from "../repository/iProductRepository";
 import IOrderRepository from "../repository/iOrderRepository";
-import Order from "../../domain/entities/order";
+import Order from "../../domain/entities/Order";
 import CurrencyTable from "../../domain/entities/CurrencyTable";
 
 export default class Checkout {

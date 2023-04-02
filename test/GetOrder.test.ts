@@ -3,7 +3,7 @@ import ProductRepositoryFake from "../src/infra/fakes/productRepositoryFake";
 import sinon from "sinon";
 import data from "../src/infra/data/data";
 import OrderRepositoryFake from "../src/infra/fakes/orderRepositoryFake";
-import Order from "../src/domain/entities/order";
+import Order from "../src/domain/entities/Order";
 import GetOrder from "../src/application/usecase/GetOrder";
 import crypto from "crypto";
 

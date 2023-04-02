@@ -1,6 +1,6 @@
 import IOrderRepository from '../../application/repository/iOrderRepository';
 import data from '../data/data';
-import Order from '../../domain/entities/order';
+import Order from '../../domain/entities/Order';
 
 export default class OrderRepositoryFake implements IOrderRepository {
     constructor() {

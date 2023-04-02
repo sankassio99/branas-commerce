@@ -8,7 +8,7 @@ import ProductRepositoryFake from "../src/infra/fakes/productRepositoryFake";
 import CouponRepositoryFake from "../src/infra/fakes/couponRepositoryFake";
 import OrderRepositoryFake from "../src/infra/fakes/orderRepositoryFake";
 import sinon from "sinon";
-import Product from "../src/domain/entities/product";
+import Product from "../src/domain/entities/Product";
 
 let checkout: Checkout;
 let currencyGateway: ICurrencyGateway;

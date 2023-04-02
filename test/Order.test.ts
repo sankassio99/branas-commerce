@@ -1,5 +1,5 @@
-import Order from "../src/domain/entities/order";
-import Product from "../src/domain/entities/product";
+import Order from "../src/domain/entities/Order";
+import Product from "../src/domain/entities/Product";
 import crypto from "crypto";
 import CurrencyTable from "../src/domain/entities/CurrencyTable";
 

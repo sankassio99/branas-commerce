@@ -1,4 +1,4 @@
-import Product from "../../domain/entities/product";
+import Product from "./Product";
 
 // Freight calculator é uma entidate para o Clean Architecture porque é uma regra idependente
 // poderia usar ele em varios lugares

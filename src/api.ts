@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import ICurrencyGateway from "./application/gateway/iCurrencyGateway";
-import Order from "./domain/entities/order";
+import Order from "./domain/entities/Order";
 import CurrencyApiFake from "./infra/fakes/currencyApiFake";
 import Checkout from "./application/usecase/Checkout";
 import IProductRepository from "./application/repository/iProductRepository";

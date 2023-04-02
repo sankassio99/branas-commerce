@@ -1,6 +1,6 @@
-import Item from "./item";
-import Product from "./product";
-import Cpf from "./cpf";
+import Item from "./Item";
+import Product from "./Product";
+import Cpf from "./Cpf";
 import CurrencyTable from "./CurrencyTable";
 
 export default class Order {
