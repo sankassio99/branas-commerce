@@ -17,7 +17,7 @@ test("Must validate a valid dicount coupon", async function () {
 	expect(output).toBeTruthy();
 });
 
-test.skip("Deve validar um cupom de desconto expirado", async function () {
+test("Must validate a expired discount coupon", async function () {
 	const input = "VALE10"
 	const output = await validateCoupon.execute(input);
 	expect(output).toBeFalsy();

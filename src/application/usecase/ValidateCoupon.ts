@@ -10,10 +10,7 @@ export default class ValidateCoupon {
     }
 
     async execute(couponId: string) : Promise<boolean> {
-        let output = false;
 		const coupon = await this.couponRepository.get(couponId);
-        
-        output = !coupon.isExpired(new Date());
-        return output;
+        return !coupon.isExpired(new Date());
 	}
 }
