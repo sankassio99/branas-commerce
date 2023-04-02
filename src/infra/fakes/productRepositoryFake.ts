@@ -19,6 +19,19 @@ export default class ProductRepositoryFake implements IProductRepository {
         if(!product){
             throw new Error(`Product ${idProduct} not found`);
         }
-        return product;
+        return this.createOutput(product);
+    }
+
+    private createOutput(product : any) : Product{
+        return new Product({
+            desc: product.desc,
+            price: product.price,
+            quantity: product.quantity,
+            width: product.width,
+            height: product.height,
+            deep: product.deep,
+            weight: product.weight,
+        });
     }
 }
+
