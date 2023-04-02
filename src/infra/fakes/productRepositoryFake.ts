@@ -6,8 +6,9 @@ export default class ProductRepositoryFake implements IProductRepository {
     constructor() {
     }
 
-    getAll(): Promise<Product[]> {
-        throw new Error('Method not implemented.');
+    async getAll(): Promise<Product[]> {
+        let products = data.jsonProducts.map(data => this.createOutput(data));
+        return products;
     }
 
     async save(product: Product): Promise<void> {

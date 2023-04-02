@@ -9,6 +9,7 @@ import IOrderRepository from "./application/repository/iOrderRepository";
 import ProductRepositoryFake from "./infra/fakes/productRepositoryFake";
 import CouponRepositoryFake from "./infra/fakes/couponRepositoryFake";
 import OrderRepositoryFake from "./infra/fakes/orderRepositoryFake";
+import GetProducts from "./application/usecase/GetProducts";
 const app = express();
 app.use(express.json());
 
@@ -18,6 +19,7 @@ let productRepository: IProductRepository;
 let couponRepository: ICouponRepository;
 let orderRepository: IOrderRepository;
 let output: Output;
+let getProducts: GetProducts;
 
 app.post("/checkout", async function (req: Request, res: Response) {
     productRepository = new ProductRepositoryFake();
@@ -40,6 +42,15 @@ app.post("/checkout", async function (req: Request, res: Response) {
         message: e.message
       });
     }
+});
+
+app.get("/products", async function (req: Request, res: Response) {
+    productRepository = new ProductRepositoryFake();
+    getProducts = new GetProducts(productRepository);
+    let response = await getProducts.execute();
+    res.status(200).json({
+      response
+    });
 });
 
 app.listen(3000);
