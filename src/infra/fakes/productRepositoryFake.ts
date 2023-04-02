@@ -10,19 +10,20 @@ export default class ProductRepositoryFake implements IProductRepository {
         throw new Error('Method not implemented.');
     }
 
-    async save(product : Product) : Promise<void> {
-        data.jsonProducts.push(product);
+    async save(product: Product): Promise<void> {
+        const input: Input = this.createInput(product)
+        data.jsonProducts.push(input);
     }
 
     async get(idProduct: number): Promise<any> {
         const product = data.jsonProducts.find((element) => parseInt(element.id) == idProduct);
-        if(!product){
+        if (!product) {
             throw new Error(`Product ${idProduct} not found`);
         }
         return this.createOutput(product);
     }
 
-    private createOutput(product : any) : Product{
+    private createOutput(product: any): Product {
         return new Product({
             desc: product.desc,
             price: product.price,
@@ -33,5 +34,30 @@ export default class ProductRepositoryFake implements IProductRepository {
             weight: product.weight,
         });
     }
+
+    private createInput(product: Product): Input {
+        return {
+            id: product.id,
+            desc: product.desc,
+            price: product.price,
+            quantity: product.quantity,
+            width: product.width,
+            height: product.height,
+            deep: product.deep,
+            weight: product.weight,
+            currency: product.currency
+        };
+    }
 }
 
+type Input = {
+    id: string,
+    desc: string,
+    price: number,
+    quantity: number,
+    width: number,
+    height: number,
+    deep: number,
+    weight: number,
+    currency: string
+}
