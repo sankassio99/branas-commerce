@@ -1,5 +1,4 @@
 import IOrderRepository from "../src/application/repository/iOrderRepository";
-import ICurrencyGateway from "../src/application/gateway/ICurrencyGateway";
 import CurrencyApiFake from "../src/infra/fakes/currencyApiFake";
 import Checkout from "../src/application/usecase/Checkout";
 import ICouponRepository from "../src/application/repository/iCouponRepository";
@@ -9,6 +8,7 @@ import CouponRepositoryFake from "../src/infra/fakes/couponRepositoryFake";
 import OrderRepositoryFake from "../src/infra/fakes/orderRepositoryFake";
 import sinon from "sinon";
 import Product from "../src/domain/entities/Product";
+import ICurrencyGateway from "../src/application/gateway/iCurrencyGateway";
 
 let checkout: Checkout;
 let currencyGateway: ICurrencyGateway;

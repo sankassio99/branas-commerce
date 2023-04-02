@@ -13,7 +13,7 @@ export default class Checkout {
 		readonly productRepository: IProductRepository,
 		readonly couponRepository: ICouponRepository,
 		readonly orderRepository: IOrderRepository,
-		readonly currencyTable = new CurrencyTable()
+		readonly currencyTable = new CurrencyTable(),
 	) {
 	}
 
@@ -36,10 +36,10 @@ export default class Checkout {
 		let message;
 		if (input.coupon) {
 			const coupon = await this.couponRepository.get(input.coupon);
-			if(coupon.expired){
+			if(coupon.isExpired(new Date())){
 				message = "Discount coupon invalid";
 			}else{
-				order.addDiscountCoupon(coupon.value);
+				order.addDiscountCoupon(coupon);
 			}
 		}
 		let total = order.getTotal();

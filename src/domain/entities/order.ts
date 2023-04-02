@@ -2,10 +2,11 @@ import Item from "./Item";
 import Product from "./Product";
 import Cpf from "./Cpf";
 import CurrencyTable from "./CurrencyTable";
+import Coupon from "./Coupon";
 
 export default class Order {
     items: Array<Item> = [];
-    discountCoupon?: number;
+    discountCoupon?: Coupon;
     cpf: Cpf;
     freight: number;
     readonly code: string;
@@ -62,14 +63,14 @@ export default class Order {
                 this.currencyTable.getCurrency(product.currency);
         });
         if (this.discountCoupon) {
-            var discountValue = total * (this.discountCoupon / 100);
+            var discountValue = total * (this.discountCoupon.percentage / 100);
             total = total - discountValue;
         }
 
         return total;
     }
 
-    addDiscountCoupon(discountCoupon: number) {
+    addDiscountCoupon(discountCoupon: Coupon) {
         this.discountCoupon = discountCoupon;
     }
 

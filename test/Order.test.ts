@@ -2,6 +2,7 @@ import Order from "../src/domain/entities/Order";
 import Product from "../src/domain/entities/Product";
 import crypto from "crypto";
 import CurrencyTable from "../src/domain/entities/CurrencyTable";
+import Coupon from "../src/domain/entities/Coupon";
 
 let currencyTable: CurrencyTable;
 
@@ -137,7 +138,7 @@ test("Should get total value with discount after associate coupon", function () 
     });
     let products = [product1, product2, product3];
 
-    let discountCoupon: number = 10;
+    let discountCoupon = new Coupon("VALE10", 10, new Date("2023-10-01T10:00:00"));
 
     // Act
     let order = new Order("746.971.314-01", currencyTable);
