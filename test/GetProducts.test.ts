@@ -1,5 +1,5 @@
 import GetProducts from "../src/application/usecase/GetProducts";
-import ProductRepositoryFake from "../src/infra/fakes/productRepositoryFake";
+import ProductRepositoryFake from "../src/infra/repository/productRepositoryFake";
 import sinon from "sinon";
 import Product from "../src/domain/entities/Product";
 

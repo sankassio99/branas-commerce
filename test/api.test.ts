@@ -113,3 +113,4 @@ test('Should get all products', async () => {
     expect(response.status).toBe(200);
     expect(output != null).toBeTruthy();
 });
+

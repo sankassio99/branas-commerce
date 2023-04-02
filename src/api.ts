@@ -1,17 +1,19 @@
 import express, { Request, Response } from "express";
 import ICurrencyGateway from "./application/gateway/iCurrencyGateway";
 import Order from "./domain/entities/Order";
-import CurrencyApiFake from "./infra/fakes/currencyApiFake";
+import CurrencyApiFake from "./infra/gateway/currencyApiFake";
 import Checkout from "./application/usecase/Checkout";
 import IProductRepository from "./application/repository/iProductRepository";
 import ICouponRepository from "./application/repository/iCouponRepository";
 import IOrderRepository from "./application/repository/iOrderRepository";
-import ProductRepositoryFake from "./infra/fakes/productRepositoryFake";
-import CouponRepositoryFake from "./infra/fakes/couponRepositoryFake";
-import OrderRepositoryFake from "./infra/fakes/orderRepositoryFake";
+import ProductRepositoryFake from "./infra/repository/productRepositoryFake";
+import CouponRepositoryFake from "./infra/repository/couponRepositoryFake";
+import OrderRepositoryFake from "./infra/repository/orderRepositoryFake";
 import GetProducts from "./application/usecase/GetProducts";
+const cors = require("cors");
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 let checkout: Checkout;
 let currencyGateway: ICurrencyGateway;
@@ -38,6 +40,7 @@ app.post("/checkout", async function (req: Request, res: Response) {
       const output = await checkout.execute(req.body);
       res.json(output);
     } catch (e: any) {
+      console.log(e)
       res.status(422).json({
         message: e.message
       });

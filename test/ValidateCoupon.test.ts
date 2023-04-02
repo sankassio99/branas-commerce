@@ -1,6 +1,6 @@
 import ICouponRepository from "../src/application/repository/iCouponRepository";
 import ValidateCoupon from "../src/application/usecase/ValidateCoupon";
-import CouponRepositoryFake from "../src/infra/fakes/couponRepositoryFake";
+import CouponRepositoryFake from "../src/infra/repository/couponRepositoryFake";
 
 let validateCoupon: ValidateCoupon;
 let couponRepository: ICouponRepository;
